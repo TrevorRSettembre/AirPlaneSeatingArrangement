@@ -17,13 +17,14 @@ public class FileManager {
     
 
     /**
-     * when creating a file use the relative path of the folder
-     * @param fileName name of file and type
+     * doesent create the file in the right location fix later
      * work on dealing with a file that already exists
+     * @param fileName name of file and type
      */
     public void CreateFile(String fileName){
         try {
-            
+            //not sure if good to use check layer
+            @SuppressWarnings("unused")
             File passengerCSV = new File(filePath, fileName);
            
             } catch (Exception e) {
@@ -38,7 +39,7 @@ public class FileManager {
      * @param fileName name of csv
      * @param passengerStats comma seperated string of passenger details
      */
-    public void fileWriterRandom(String fileName, String passengerStats){
+    public void fileWriter(String fileName, String passengerStats){
         try {
             FileWriter fileWriter = new FileWriter(fileName,true);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
@@ -55,7 +56,7 @@ public class FileManager {
     
     /**
      * 
-     * @return
+     * @return arralylist of name files
      */
     public ArrayList<String> readFirstLastNameFile(){
         try {
