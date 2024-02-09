@@ -1,8 +1,11 @@
 public class Main {
     public static void main(String[] args) throws Exception {
         
-        RandomPassengerCSV randomPassengerCSV = new RandomPassengerCSV();
+        /*
+         * Work on puting things in files
+         */
+       RandomPassengerCSV randomPassengerCSV = new RandomPassengerCSV();
 
-        randomPassengerCSV.createPassengerCSV(10);
+       randomPassengerCSV.createPassengerCSV(10);
     }
 }
