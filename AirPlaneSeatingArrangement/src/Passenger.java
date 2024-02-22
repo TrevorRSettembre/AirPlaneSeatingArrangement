@@ -11,6 +11,8 @@ public class Passenger {
     //Specific seat?
     //bought multiple seats?
 
+    
+
     public void setFirstName(String firstName){
         name[0] = firstName;
     }
@@ -43,8 +45,11 @@ public class Passenger {
         return gender;
     }
 
-    public void setComfort(double confort){
-        this.comfort = confort;
+    /**
+     * put comort setter here 
+     */
+    public void setComfort(){
+       
     }
 
     public double getComfort(){

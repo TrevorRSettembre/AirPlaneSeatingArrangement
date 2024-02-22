@@ -1,16 +1,14 @@
-import java.util.ArrayList;
-
 public class Main {
     public static void main(String[] args) throws Exception {
 
-        // RandomPassengerCSV randomPassengerCSV = new RandomPassengerCSV();
+        RandomPassengerCSV randomPassengerCSV = new RandomPassengerCSV();
 
-        // randomPassengerCSV.createPassengerCSV(10);
+        randomPassengerCSV.createPassengerCSV(1000);
         
         
-        SelectedSeat selectedSeat = new SelectedSeat();
+        // SelectedSeat selectedSeat = new SelectedSeat();
 
-        System.out.println(selectedSeat.getEconSeats());
+        // System.out.println(selectedSeat.getEconSeats());
         
 
 

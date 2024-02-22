@@ -30,6 +30,7 @@ public class RandomPassengerCSV {
                 nameGender[0] = firstNamesMen.get(randomNumberGen.RandomInt(0, firstNamesMen.size()-1));
                 nameGender[1] = lastNames.get(randomNumberGen.RandomInt(0, lastNames.size()-1));
                 nameGender[2] = "male";
+                
                 break;
 
             case 1:
@@ -110,6 +111,27 @@ public class RandomPassengerCSV {
 
     }
 
+    /**
+     * 
+     * figure out how many passengers
+     */
+    private void generateGroup(){
+        int planeMax = 200;
+        int passengerCount = randomNumberGen.RandomInt(1, planeMax);
+        ArrayList<ArrayList<String>> firstClass = new ArrayList<ArrayList<String>>();  
+
+        //how many groups for First Class     
+        for(int i=0; i < randomNumberGen.RandomInt(1, 3);i++){
+            ArrayList<String> innerList = new ArrayList<String>();
+            //max group count 6
+            for(int j=0; j < 6;j++){
+                //adds id numbers of passengers to a group
+                innerList.add(Integer.toString(randomNumberGen.RandomInt(1, passengerCount)));
+            }
+           
+            firstClass.add(innerList);
+        } 
+    }
 
     /**
      * Creates a scalable arraylist containg random passenger inforaion
