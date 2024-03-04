@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Passenger {
 
     
@@ -6,12 +8,36 @@ public class Passenger {
     private String gender;
     private double comfort;
     private String carryonSize;
-    private int carryonWeight;
+    private int ID;
+    
 
+
+    private String pickedSeat;//should be set to "NULL" if passenger did not choose a seat
+    private String pickedClass;//should be either "F" for first class or "E" for economy "P" for economy plus
+    private ArrayList<Passenger> neighbors = new ArrayList<Passenger>();
+    private String seat;
+    private ArrayList<Passenger> group = new ArrayList<Passenger>();
+    
+
+    private String seatClass;// should be "F" for first, "E" for economy, and "P" for economy plus
     //Specific seat?
     //bought multiple seats?
 
+    public String getSeat() {
+        return seat;
+    }
+
+    public void setSeat(String seat) {
+        this.seat = seat;
+    }
     
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int iD) {
+        ID = iD;
+    }
 
     public void setFirstName(String firstName){
         name[0] = firstName;
@@ -45,11 +71,98 @@ public class Passenger {
         return gender;
     }
 
-    /**
-     * put comort setter here 
-     */
     public void setComfort(){
-       
+        if(pickedSeat != "NULL")
+       {
+            if(seat.equals(pickedSeat))
+            {
+                comfort = comfort + (Math.random() * (51-0) + 0);
+            }
+            else
+            {
+                comfort = comfort - (Math.random() * (101 - 0) + 0);
+            }
+       }
+       if((seatClass.equals("F")&& !(pickedClass.equals("F"))))
+       {
+            comfort = comfort + (Math.random() * (151 - 0) + 0);
+       }
+       else if(!(seatClass.equals("F")) && pickedClass.equals("F"))
+       {
+            comfort = comfort - (Math.random() * (201 - 0) + 0);
+       }
+       else if(seatClass.equals("P") && !(pickedClass.equals("P")))
+       {
+            comfort = comfort + (Math.random() * (101 - 0) + 0);
+       }
+       else if (seatClass.equals("E") && pickedClass.equals("P"))
+       {
+            comfort = comfort - (Math.random() * (151 - 0) + 0);
+       }
+       Passenger currPassenger;
+       for(int i = 0; i < neighbors.size(); i++)
+       {
+            currPassenger = neighbors.get(i);
+            if(!(currPassenger.getSeat().equals(seat)))
+            {
+                int findGroup = 0;
+                for(int j = 0; j < group.size(); j++)
+                {
+                    
+                    Passenger currGroupMember = group.get(j);
+                    if(currPassenger.getSeat().equals(currGroupMember.getSeat()))
+                    {
+                        comfort = comfort + (Math.random() * (101 - 0) + 0);
+                        findGroup = 1;
+                    }
+                }
+                if(findGroup == 0)
+                {
+                    if(age > 5 && currPassenger.getAge() <= 5)
+                    {
+                        comfort = comfort - (Math.random() * (51 -0) + 0);
+                    }
+                    else if(age - currPassenger.getAge() == 5 || age - currPassenger.getAge() == -5)
+                    {
+                        comfort = comfort + (Math.random() * (21 - 0) + 0);
+                    }
+                    else if(age - currPassenger.getAge() == 10 || age - currPassenger.getAge() == -10)
+                    {
+                        comfort = comfort + (Math.random() * (16 - 0) + 0);
+                    }
+                    else if(age - currPassenger.getAge() == 15 || age - currPassenger.getAge() == -15)
+                    {
+                        comfort = comfort + (Math.random() * (11 - 0) + 0);
+                    }
+                    else if(age - currPassenger.getAge() == 20 || age - currPassenger.getAge() == -20)
+                    {
+                        comfort = comfort + (Math.random() * (6 - 0) + 0);
+                    }
+                    else if(age - currPassenger.getAge() == 30 || age - currPassenger.getAge() == -30)
+                    {
+                        comfort = comfort - (Math.random() * (6 - 0) + 0);
+                    }
+                    else if(age - currPassenger.getAge() == 35 || age - currPassenger.getAge() == -35)
+                    {
+                        comfort = comfort - (Math.random() * (11 - 0) + 0);
+                    }
+                    else if(age - currPassenger.getAge() == 40 || age - currPassenger.getAge() == -40)
+                    {
+                        comfort = comfort - (Math.random() * (16 - 0) + 0);
+                    }
+                    else if(age - currPassenger.getAge() == 45 || age - currPassenger.getAge() == -45)
+                    {
+                        comfort = comfort - (Math.random() * (21 - 0) + 0);
+                    }
+                    if(gender.equals(currPassenger.getGender()))
+                    {
+                        comfort = comfort + (Math.random() * (21 - 0) + 0);
+                    }
+                }
+            }
+       }
+        
+
     }
 
     public double getComfort(){
@@ -64,12 +177,29 @@ public class Passenger {
         return carryonSize;
     }
 
-    public void setCarryonWeight(int carryonWeight) {
-        this.carryonWeight = carryonWeight;
+
+    public String[] getName() {
+        return name;
     }
 
-    public int getCarryonWeight() {
-        return carryonWeight;
+    public void setName(String[] name) {
+        this.name = name;
+    }
+
+    public String getPickedSeat() {
+        return pickedSeat;
+    }
+
+    public void setPickedSeat(String pickedSeat) {
+        this.pickedSeat = pickedSeat;
+    }
+
+    public ArrayList getNeighbors() {
+        return neighbors;
+    }
+
+    public void setNeighbors(ArrayList neighbors) {
+        this.neighbors = neighbors;
     }
 
 
