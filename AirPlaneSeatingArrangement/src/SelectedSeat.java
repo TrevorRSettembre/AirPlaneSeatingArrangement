@@ -3,9 +3,7 @@ import java.util.ArrayList;
 public class SelectedSeat {
 
             
-        /*
-         * Work on puting things in files
-         */
+    
         private String[] firstClassLetters = {"A","B","E","F"};
         private String[] econLetters = {"A","B","C","D","E","F"};
 
@@ -55,34 +53,46 @@ public class SelectedSeat {
                 }
             }
         }
+
+        System.out.println(firstClassSeats);
+        System.out.println(econPlusSeats);
+        System.out.println(econSeats);
+
+
     }
    
+    //add getters
+
+    public String getFirstClassSeat(int i){
+        return firstClassSeats.get(i);
+    }
 
     public void removeIndexFirstClass(int i){
         firstClassSeats.remove(i);
+    }
+
+    public String getEconPlusSeat(int i){
+        return econPlusSeats.get(i);
     }
 
     public void removeIndexEconPlus(int i){
         econPlusSeats.remove(i);
     }   
 
+    public String getEconSeats(int i){
+        return econSeats.get(i);
+    }
+
     public void removeIndexEcon(int i){
         econSeats.remove(i);
     }
 
-    public ArrayList<String> getFirstClassSeats() {
-        return firstClassSeats;
-    }
-
-    public int getEconPlusLength() {
-        return econPlusLength;
-    }
-
-    public ArrayList<String> getEconSeats() {
-        return econSeats;
-    }
-
-    
+    /**
+     * @return Size of the array
+     */
+    public int getFirstClassLength() {
+        return firstClassSeats.size();
+    } 
        
 }
 
