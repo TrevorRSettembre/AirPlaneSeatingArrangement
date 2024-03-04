@@ -1,11 +1,11 @@
 import java.util.ArrayList;
-import java.util.Stack;
 
 public class RandomPassengerCSV {
 
 
 
     private RandomNumberGen randomNumberGen = new RandomNumberGen();
+    private SelectedSeat selectedSeat = new SelectedSeat();
     
     private FileManager passengerCSVWritew = new FileManager("AirPlaneSeatingArrangement\\src\\Names");
 
@@ -55,22 +55,6 @@ public class RandomPassengerCSV {
         return Integer.toString(randomNumberGen.RandomInt(1, 100));
     }
 
-    
-
-    /*
-     * if we are going add a feature to allow passengers to buy specific
-     * seats questions need answers
-     * 
-     * Do familys always sit next to eachother
-     *  
-     */
-    //737
-
-    private void getSeatNumber(int level){
-       
-
-     }
-
     /**
      * fix weight to make it not by size
      * Change index 1 to an int later maybe add random weight
@@ -115,22 +99,74 @@ public class RandomPassengerCSV {
      * 
      * figure out how many passengers
      */
-    private void generateGroup(){
-        int planeMax = 200;
-        int passengerCount = randomNumberGen.RandomInt(1, planeMax);
-        ArrayList<ArrayList<String>> firstClass = new ArrayList<ArrayList<String>>();  
+    private void generateFristClassGroups(){
+    
+        int planeMax = 202; 
+        //bost min number
+        int passengerCount = randomNumberGen.RandomInt(50, planeMax);
 
-        //how many groups for First Class     
-        for(int i=0; i < randomNumberGen.RandomInt(1, 3);i++){
-            ArrayList<String> innerList = new ArrayList<String>();
-            //max group count 6
-            for(int j=0; j < 6;j++){
-                //adds id numbers of passengers to a group
-                innerList.add(Integer.toString(randomNumberGen.RandomInt(1, passengerCount)));
+        ArrayList<Integer> passengerId = new ArrayList<Integer>();
+        ArrayList<ArrayList<Integer>> firstClass = new ArrayList<ArrayList<Integer>>();
+        ArrayList<ArrayList<ArrayList<Integer>>> passengerGroup = new ArrayList<ArrayList<ArrayList<Integer>>>();
+     
+
+       
+        for(int i = 0; i < passengerCount;i++){
+            passengerId.add(i+1);
+        }
+
+        for (int i = 0; i < randomNumberGen.RandomInt(1, 6); i++) {
+            ArrayList<Integer> innerList = new ArrayList<Integer>();
+
+            // max group count for first class is 4 due to seat length to make it easier
+            for (int j = 0; j < randomNumberGen.RandomInt(1, 6); j++) {  
+                innerList.add(passengerId.get(randomNumberGen.RandomInt(0, (passengerId.size()-1))));
+                passengerId.remove(innerList.get(j));
             }
-           
             firstClass.add(innerList);
-        } 
+        }
+
+        //EconPlus-----------------------------------------------------------------------------------------
+
+        ArrayList<ArrayList<Integer>> econPlus = new ArrayList<ArrayList<Integer>>();
+       
+        for (int i = 0; i < randomNumberGen.RandomInt(1, 6); i++) {
+            ArrayList<Integer> innerList = new ArrayList<Integer>();
+
+            // max group count 6
+            for (int j = 0; j < randomNumberGen.RandomInt(1, 6); j++) {  
+                innerList.add(passengerId.get(randomNumberGen.RandomInt(0, (passengerId.size()-1))));
+                passengerId.remove(innerList.get(j));
+            }
+            econPlus.add(innerList);
+        }
+
+        //Econ---------------------------------------------------------------------------------------------
+
+        ArrayList<ArrayList<Integer>> econ = new ArrayList<ArrayList<Integer>>();
+       
+        for (int i = 0; i < randomNumberGen.RandomInt(1, 6); i++) {
+            ArrayList<Integer> innerList = new ArrayList<Integer>();
+
+            // max group count 6
+            for (int j = 0; j < randomNumberGen.RandomInt(1, 6); j++) {  
+                innerList.add(passengerId.get(randomNumberGen.RandomInt(0, (passengerId.size()-1))));
+                passengerId.remove(innerList.get(j));
+            }
+            econ.add(innerList);
+        }  
+        
+
+
+    passengerGroup.add(firstClass);
+
+
+
+
+    }
+
+    public void assignSeets(){
+        
     }
 
     /**
@@ -175,3 +211,44 @@ public class RandomPassengerCSV {
     }
 
 }
+
+
+
+// //work on adding the assignd seats and add adjecent seats.
+
+// ArrayList<String> firstClassSeats = new ArrayList<String>();
+// ArrayList<String> econPlusSeats = new ArrayList<String>();
+// ArrayList<String> econSeats = new ArrayList<String>();
+
+
+// String firstClassSeatNumber = selectedSeat.getFirstClassSeat(randomNumberGen.RandomInt(0, (selectedSeat.getFirstClassLength()-1)));
+
+// char col = firstClassSeatNumber.charAt(0);
+// char row = firstClassSeatNumber.charAt(1);
+
+// System.out.println(col);
+// System.out.println(row);
+
+// switch (col) {
+//     case 'A':
+    
+//     //for loop somewhere
+//         //how big is the group
+        
+
+//         for(int i = 0;i<firstClass.get(0).size();i++){
+            
+//         }
+
+//         break;
+//     case 'B':
+//         break;
+//     case 'E':
+//         break;
+//     case 'F':
+//         break;
+        
+
+//     default:
+//         break;
+// } 
