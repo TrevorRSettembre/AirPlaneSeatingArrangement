@@ -27,12 +27,12 @@ public class RandomPassengerCSV {
      * @param planeMax
      * @param passengerCount make it random
      */
-    public RandomPassengerCSV(int planeMax){
+    public RandomPassengerCSV(int planeMax, int passengerCount){
 
         this.planeMax = planeMax;
         //min number of passengers?
         //for now max 56
-        passengerCount = randomNumberGen.RandomInt(50, 56);
+        this.passengerCount = passengerCount;
     }
 
     

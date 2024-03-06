@@ -53,6 +53,33 @@ public class FileManager {
             // TODO: handle exception
         }
     }
+
+    /**
+     * 
+     * @return arraylist passeger stats
+     */
+    public ArrayList<String[]> randomPassengerFileReader(){
+        String fileName = "passengerInfo.csv";
+        String delimiter = ",";
+
+        try {
+            //fix file path for later
+            File file = new File(filePath);
+            FileReader fileReader = new FileReader(file);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            String line;
+            ArrayList<String[]> passengerStatsList = new ArrayList<String[]>();
+            while((line = bufferedReader.readLine()) != null){
+                passengerStatsList.add(line.split(delimiter));
+            }
+            return passengerStatsList;
+            
+        } catch (Exception e) {
+            //fix later and add error handling
+            return null;
+            // TODO: handle exception
+        }
+    }
     
     /**
      * 
