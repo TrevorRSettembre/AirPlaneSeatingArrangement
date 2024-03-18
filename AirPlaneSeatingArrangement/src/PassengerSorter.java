@@ -8,6 +8,10 @@ public class PassengerSorter
     private ArrayList<Passenger> smallCarryOns = new ArrayList<Passenger>();
     private ArrayList<Passenger> mediumCarryOns = new ArrayList<Passenger>();
     private ArrayList<Passenger> largeCarryOns = new ArrayList<Passenger>();
+    private double avgComfort;
+
+
+
 
     public PassengerSorter(ArrayList<Passenger>passengerList)
     {
@@ -16,6 +20,26 @@ public class PassengerSorter
         smallCarryOnSorter(passengerList);
         mediumCarryOnSorter(passengerList);
         largeCarryOnSorter(passengerList);
+        setAvgComfort(passengerList);
+    }
+
+    public double getAvgComfort() {
+        return avgComfort;
+    }
+
+
+    public void setAvgComfort(ArrayList<Passenger>passengerList) {
+        double averageCom = 0;
+        double comfortSum = 0;
+        for(int i = 0; i < passengerList.size(); i++)
+        {
+            Passenger currPassenger = passengerList.get(i);
+            comfortSum = comfortSum + currPassenger.getComfort();
+        }
+
+        averageCom = comfortSum/passengerList.size();
+
+        avgComfort = averageCom;
     }
 
     public void femalePassengerSorter(ArrayList<Passenger>passengerList)
