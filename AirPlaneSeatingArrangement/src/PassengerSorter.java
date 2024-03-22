@@ -1,81 +1,41 @@
 import java.util.ArrayList;
-
-
 public class PassengerSorter 
 {
-    private ArrayList<Passenger> femalePassengers = new ArrayList<Passenger>();
-    private ArrayList<Passenger> malePassengers = new ArrayList<Passenger>();
-    private ArrayList<Passenger> age = new ArrayList<Passenger>();
-    private ArrayList<Passenger> smallCarryOns = new ArrayList<Passenger>();
-    private ArrayList<Passenger> mediumCarryOns = new ArrayList<Passenger>();
-    private ArrayList<Passenger> largeCarryOns = new ArrayList<Passenger>();
-    private ArrayList<Passenger> firstClassSeats = new ArrayList<Passenger>();
-    private ArrayList<Passenger> economySeats = new ArrayList<Passenger>();
-    private ArrayList<Passenger> economyPlusSeats = new ArrayList<Passenger>();
+    private ArrayList<Passenger> gender;
+    private ArrayList<Passenger> age;
+    private ArrayList<Passenger> firstClassSeats;
+    private ArrayList<Passenger> economySeats;
+    private ArrayList<Passenger> economyPlusSeats;
+    private ArrayList<Passenger> smallCarryOns;
+    private ArrayList<Passenger> mediumCarryOns;
+    private ArrayList<Passenger> largeCarryOns;
 
-
-    public PassengerSorter(ArrayList<Passenger>passengerList)
+    public void femaleSorter(ArrayList<Passenger>passengerList) 
     {
-        genderSorter(passengerList);
-        ageSorter(passengerList);
-        carryOnSorter(passengerList);
-        seatsSorter(passengerList);
-    }
-
-    public void genderSorter(ArrayList<Passenger>passengerList) 
-    {
-        for (int i = 0; i < passengerList.size(); i++)
-        {
+        gender = new ArrayList<Passenger>();
+        for (int i = 0; i < passengerList.size(); i++) {
             Passenger currentPassenger = passengerList.get(i);
-            String gender = currentPassenger.getGender().toLowerCase();
-            switch (gender) {
-                case "f":
-                    femalePassengers.add(currentPassenger);
-                    break;
-                case "m":
-                    malePassengers.add(currentPassenger);
-                    break;
-                default:
-                    System.out.println("Invalid gender");
-            }
+            if (currentPassenger.getGender().toLowerCase().equals("f"))
+                gender.add(currentPassenger);
         }
-
-        for (int i = 0; i < femalePassengers.size(); i++)
-        {
-            for (int j = i + 1; j < femalePassengers.size() - 1; j++)
-            {
-                if (femalePassengers.get(j).getAge() < femalePassengers.get(i).getAge())
-                {
-                    Passenger temp = femalePassengers.get(i);
-                    femalePassengers.set(i, femalePassengers.get(j));
-                    femalePassengers.set(j, temp);
-                }
-            }
-        }
-
-        for (int i = 0; i < malePassengers.size(); i++)
-        {
-            for (int j = i + 1; j < malePassengers.size() - 1; j++)
-            {
-                if (malePassengers.get(j).getAge() < malePassengers.get(i).getAge())
-                {
-                    Passenger temp = malePassengers.get(i);
-                    malePassengers.set(i, malePassengers.get(j));
-                    malePassengers.set(j, temp);
-                }
-            }
+    }
+    public void maleSorter(ArrayList<Passenger>passengerList)
+    {
+        gender = new ArrayList<Passenger>();
+        for (int i = 0; i < passengerList.size(); i++) {
+            Passenger currentPassenger = passengerList.get(i);
+            if (currentPassenger.getGender().toLowerCase().equals("m"))
+                gender.add(currentPassenger);
         }
     }
 
     public void ageSorter(ArrayList<Passenger>passengerList)
     {
-        age = passengerList; 
-        for (int i = 0; i < age.size(); i++)
-        {
-            for (int j = i + 1; j < age.size() - 1; j++)
-            {
-                if (age.get(j).getAge() < age.get(i).getAge())
-                {
+        age = new ArrayList<Passenger>();
+        age = passengerList;
+        for (int i = 0; i < age.size(); i++) {
+            for (int j = i + 1; j < age.size() - 1; j++) {
+                if (age.get(j).getAge() < age.get(i).getAge()) {
                     Passenger temp = age.get(i);
                     age.set(i, age.get(j));
                     age.set(j, temp);
@@ -84,48 +44,103 @@ public class PassengerSorter
         }
     }
 
-    public void carryOnSorter(ArrayList<Passenger>passengerList)
+    public void smallCarryOnSorter(ArrayList<Passenger>passengerList)
     {
-        for (int i = 0; i < passengerList.size(); i++)
-        {
+        smallCarryOns = new ArrayList<Passenger>();
+        for (int i = 0; i < passengerList.size(); i++) {
             Passenger currentPassenger = passengerList.get(i);
-            String carryOn = currentPassenger.getCarryonSize().toLowerCase();
-            switch (carryOn) {
-                case "small":
-                    smallCarryOns.add(currentPassenger);
-                    break;
-                case "medium":
-                    mediumCarryOns.add(currentPassenger);
-                    break;
-                case "large":
-                    largeCarryOns.add(currentPassenger);;
-                    break;
-                default:
-                    System.out.println("Invalid carry-on size");
-            }
+            if (currentPassenger.getCarryonSize().equalsIgnoreCase("small"))
+                smallCarryOns.add(currentPassenger);
         }
     }
 
-    public void seatsSorter(ArrayList<Passenger>passengerList)
+    public void mediumCarryOnSorter(ArrayList<Passenger>passengerList)
     {
-        for (int i = 0; i < passengerList.size(); i++)
-        {
+        mediumCarryOns = new ArrayList<Passenger>();
+        for (int i = 0; i < passengerList.size(); i++) {
             Passenger currentPassenger = passengerList.get(i);
-            String seatClass = currentPassenger.getSeatClass().toLowerCase();
-            switch (seatClass) {
-                case "f":
-                    firstClassSeats.add(currentPassenger);
-                    break;
-                case "e":
-                    economySeats.add(currentPassenger);
-                    break;
-                case "p":
-                    economyPlusSeats.add(currentPassenger);
-                    break;
-                default:
-                    System.out.println("Invalid seat class");
-            }
+            if (currentPassenger.getCarryonSize().equalsIgnoreCase("medium"))
+                mediumCarryOns.add(currentPassenger);
         }
     }
 
+    public void largeCarryOnSorter(ArrayList<Passenger>passengerList)
+    {
+        largeCarryOns = new ArrayList<Passenger>();
+        for (int i = 0; i < passengerList.size(); i++) {
+            Passenger currentPassenger = passengerList.get(i);
+            if (currentPassenger.getCarryonSize().equalsIgnoreCase("large"))
+                largeCarryOns.add(currentPassenger);
+        }
+    }
+
+    public void firstClassSeatsSorter(ArrayList<Passenger>passengerList)
+    {
+        firstClassSeats = new ArrayList<Passenger>();
+        for (int i = 0; i < passengerList.size(); i++) {
+            Passenger currentPassenger = passengerList.get(i);
+            if (currentPassenger.getSeatClass().equalsIgnoreCase("f"))
+                firstClassSeats.add(currentPassenger);
+        }
+    }
+
+    public void economySeatsSorter(ArrayList<Passenger>passengerList)
+    {
+        economySeats = new ArrayList<Passenger>();
+        for (int i = 0; i < passengerList.size(); i++) {
+            Passenger currentPassenger = passengerList.get(i);
+            if (currentPassenger.getSeatClass().equalsIgnoreCase("e"))
+                economySeats.add(currentPassenger); 
+        }
+    }
+
+    public void economyPlusSeatsSorter(ArrayList<Passenger>passengerList)
+    {
+        economyPlusSeats = new ArrayList<Passenger>();
+        for (int i = 0; i < passengerList.size(); i++) {
+            Passenger currentPassenger = passengerList.get(i);
+            if (currentPassenger.getSeatClass().equalsIgnoreCase("p"))
+                economyPlusSeats.add(currentPassenger); 
+        }
+    }
+
+    public ArrayList<Passenger> getGenderList()
+    {
+        return gender;
+    }
+
+    public ArrayList<Passenger> getAgeList()
+    {
+        return age;
+    }
+
+    public ArrayList<Passenger> getFirstClassList()
+    {
+        return firstClassSeats;
+    }
+
+    public ArrayList<Passenger> getEconomySeatsList()
+    {
+        return economySeats;
+    }
+
+    public ArrayList<Passenger> getEconomyPlusSeatsList()
+    {
+        return economyPlusSeats;
+    }
+
+    public ArrayList<Passenger> getSmallCarryOnsList()
+    {
+        return smallCarryOns;
+    }
+
+    public ArrayList<Passenger> getMediumCarryOnsList()
+    {
+        return mediumCarryOns;
+    }
+
+    public ArrayList<Passenger> getLargeCarryOnsList()
+    {
+        return largeCarryOns;
+    }
 }
