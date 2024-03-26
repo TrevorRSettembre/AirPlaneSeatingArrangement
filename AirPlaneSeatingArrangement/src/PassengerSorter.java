@@ -116,4 +116,71 @@ public class PassengerSorter
         }
     }
 
+    public boolean checkLuggageFit(Passenger pOne, Passenger pTwo, Passenger pThree)
+    {
+        int capacity = 10;
+        int large = 5;
+        int medium = 4;
+        int small = 2;
+
+        String pOneSize = pOne.getCarryonSize();
+        String pTwoSize = pOne.getCarryonSize();
+        String pThreeSize = pOne.getCarryonSize();
+
+        int oneSize = 0;
+        int twoSize = 0;
+        int threeSize = 0;
+
+        if(pOneSize.equalsIgnoreCase("small"))
+        {
+            oneSize = small;
+        }
+        else if(pOneSize.equalsIgnoreCase("medium"))
+        {
+            oneSize = medium;
+        }
+        else if(pOneSize.equalsIgnoreCase("large"))
+        {
+            oneSize = large;
+        }
+
+        if(pTwoSize.equalsIgnoreCase("small"))
+        {
+            twoSize = small;
+        }
+        else if(pTwoSize.equalsIgnoreCase("medium"))
+        {
+            twoSize = medium;
+        }
+        else if(pTwoSize.equalsIgnoreCase("large"))
+        {
+            twoSize = large;
+        }
+
+        if(pThreeSize.equalsIgnoreCase("small"))
+        {
+            threeSize = small;
+        }
+        else if(pThreeSize.equalsIgnoreCase("medium"))
+        {
+            threeSize = medium;
+        }
+        else if(pThreeSize.equalsIgnoreCase("large"))
+        {
+            threeSize = large;
+        }
+
+        int currentFill = oneSize + twoSize + threeSize;
+
+        if(currentFill <= capacity)
+        {
+            return true;
+        }
+        else {
+            return false;
+        }
+
+
+    }
+
 }
