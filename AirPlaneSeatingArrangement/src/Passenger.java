@@ -8,7 +8,7 @@ public class Passenger {
     private String gender;
     private double comfort;
     private String carryonSize;
-    private int ID;
+    private int id;
     
 
 
@@ -31,12 +31,12 @@ public class Passenger {
         this.seat = seat;
     }
     
-    public int getID() {
-        return ID;
+    public int getId() {
+        return id;
     }
 
-    public void setID(int iD) {
-        ID = iD;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public void setFirstName(String firstName){
