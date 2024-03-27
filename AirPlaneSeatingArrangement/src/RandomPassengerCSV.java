@@ -18,8 +18,8 @@ public class RandomPassengerCSV {
     private ArrayList<String> firstNamesWomen = new ArrayList<String>(firstNameWomenReader.readFirstLastNameFile());
     private ArrayList<String> lastNames = new ArrayList<String>(lastNameReader.readFirstLastNameFile());
 
-    int planeMax;
-    int passengerCount;
+    private int planeMax;
+    private int passengerCount;
 
 
     /**
@@ -213,6 +213,7 @@ public class RandomPassengerCSV {
             passengerStats.add(namesGender[2]);
             passengerStats.add(generateAge());
             passengerStats.add(carryon[0]);
+            //remove weight
             passengerStats.add(carryon[1]);
             /**
              * 0 = first
