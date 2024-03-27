@@ -17,11 +17,19 @@ public class Passenger {
     private ArrayList<Passenger> neighbors = new ArrayList<Passenger>();
     private String seat;
     private ArrayList<Passenger> group = new ArrayList<Passenger>();
-    
-
     private String seatClass;// should be "F" for first, "E" for economy, and "P" for economy plus
     //Specific seat?
     //bought multiple seats?
+
+    public String getSeatClass() {
+        return seatClass;
+    }
+
+    public void setSeatClass(String seatClass) {
+        this.seatClass = seatClass;
+    }
+
+
 
     public String getSeat() {
         return seat;

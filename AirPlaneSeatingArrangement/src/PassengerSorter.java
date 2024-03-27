@@ -171,7 +171,10 @@ public class PassengerSorter
     {
         return largeCarryOns;
     }
-}
+
+
+    
+
 
     public boolean checkLuggageFit(Passenger pOne, Passenger pTwo, Passenger pThree)
     {
@@ -187,6 +190,8 @@ public class PassengerSorter
         int oneSize = 0;
         int twoSize = 0;
         int threeSize = 0;
+
+        boolean fit = true;
 
         if(pOneSize.equalsIgnoreCase("small"))
         {
@@ -231,14 +236,12 @@ public class PassengerSorter
 
         if(currentFill <= capacity)
         {
-            return true;
+            fit = false;
         }
         else {
-            return false;
+            fit = true;
         }
 
-
+        return fit;
     }
-
-
-
+}
