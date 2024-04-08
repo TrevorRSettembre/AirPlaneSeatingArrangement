@@ -8,9 +8,19 @@ public class PassengerSorterSelector
     private PassengerSorter age;
     private PassengerSorter seatClass;
     private PassengerSorter luggage;
+    private boolean sortGender;
+    private boolean sortSeatClass;
+    private boolean sortAge;
+    private boolean sortBaggage;
+    private ArrayList<Passenger> origList;
 
     public PassengerSorterSelector (ArrayList<Passenger>passengerList)
     {
+        origList = passengerList;
+        sortAge = false;
+        sortBaggage = false;
+        sortGender = false;
+        sortSeatClass = false;
         Scanner in = new Scanner(System.in);
         String genderInput = "", ageInput = "", classInput = "", luggageInput = "";
         PassengerSorter passengerSorter = new PassengerSorter();
@@ -26,6 +36,7 @@ public class PassengerSorterSelector
             female.femaleSorter(passengerList);
             male = new PassengerSorter();
             male.maleSorter(passengerList);
+            sortGender = true;
         }
         //Asks about sorting by age
         valid = false;
@@ -35,6 +46,7 @@ public class PassengerSorterSelector
 			valid = checkAnswerInput(ageInput);
         }
         if (ageInput.equalsIgnoreCase("y")){
+            sortAge = true;
             if (genderInput.equalsIgnoreCase("y")) {
                 passengerSorter.ageSorter(female.getGenderList());
                 passengerSorter.ageSorter(male.getGenderList());
@@ -52,6 +64,7 @@ public class PassengerSorterSelector
 			valid = checkAnswerInput(ageInput);
         }
         if (classInput.equalsIgnoreCase("y")) {
+            sortSeatClass = true;
             if (genderInput.equalsIgnoreCase("y")) {
                 //If sorting by gender and class of seat
                 if (ageInput.equalsIgnoreCase("n")) {
@@ -94,6 +107,7 @@ public class PassengerSorterSelector
 			valid = checkAnswerInput(ageInput);
         }
         if (luggageInput.equalsIgnoreCase("y")) {
+            sortBaggage = true;
             if (genderInput.equalsIgnoreCase("y")) {
                 //If sorting by gender, age, class of seat, and luggage 
                 //or if sorting by gender, class of seat, and luggage
@@ -108,6 +122,9 @@ public class PassengerSorterSelector
                     female.largeCarryOnSorter(female.getFirstClassList());
                     female.largeCarryOnSorter(female.getEconomySeatsList());
                     female.largeCarryOnSorter(female.getEconomyPlusSeatsList());
+                    female.noCarryOnSorter(female.getFirstClassList());
+                    female.noCarryOnSorter(female.getEconomySeatsList());
+                    female.noCarryOnSorter(female.getEconomyPlusSeatsList());
                     male.smallCarryOnSorter(male.getFirstClassList());
                     male.smallCarryOnSorter(male.getEconomySeatsList());
                     male.smallCarryOnSorter(male.getEconomyPlusSeatsList());
@@ -117,6 +134,9 @@ public class PassengerSorterSelector
                     male.largeCarryOnSorter(male.getFirstClassList());
                     male.largeCarryOnSorter(male.getEconomySeatsList());
                     male.largeCarryOnSorter(male.getEconomyPlusSeatsList());
+                    male.noCarryOnSorter(male.getFirstClassList());
+                    male.noCarryOnSorter(male.getEconomySeatsList());
+                    male.noCarryOnSorter(male.getEconomyPlusSeatsList());
                 }
                 //If sorting by gender, age, and luggage
                 //or if sorting by gender and luggage
@@ -125,9 +145,11 @@ public class PassengerSorterSelector
                     female.smallCarryOnSorter(female.getAgeList());
                     female.mediumCarryOnSorter(female.getAgeList());
                     female.largeCarryOnSorter(female.getAgeList());
+                    female.noCarryOnSorter(female.getAgeList());
                     male.smallCarryOnSorter(male.getAgeList());
                     male.mediumCarryOnSorter(male.getAgeList());
                     male.largeCarryOnSorter(male.getAgeList());
+                    male.noCarryOnSorter(male.getAgeList());
                 }
             }
             else if (ageInput.equalsIgnoreCase("y") && genderInput.equalsIgnoreCase("n")) {
@@ -142,12 +164,16 @@ public class PassengerSorterSelector
                     age.largeCarryOnSorter(age.getFirstClassList());
                     age.largeCarryOnSorter(age.getEconomySeatsList());
                     age.largeCarryOnSorter(age.getEconomyPlusSeatsList());
+                    age.noCarryOnSorter(age.getFirstClassList());
+                    age.noCarryOnSorter(age.getEconomySeatsList());
+                    age.noCarryOnSorter(age.getEconomyPlusSeatsList());
                 }
                 //If sorting by age and lugagge
                 else {
                     age.smallCarryOnSorter(age.getAgeList());
                     age.mediumCarryOnSorter(age.getAgeList());
                     age.largeCarryOnSorter(age.getAgeList());
+                    age.noCarryOnSorter(age.getAgeList());
                 }
             }
             //If sorting by class of seat and luggage 
@@ -161,6 +187,9 @@ public class PassengerSorterSelector
                 seatClass.largeCarryOnSorter(seatClass.getFirstClassList());
                 seatClass.largeCarryOnSorter(seatClass.getEconomySeatsList());
                 seatClass.largeCarryOnSorter(seatClass.getEconomyPlusSeatsList());
+                seatClass.noCarryOnSorter(seatClass.getFirstClassList());
+                seatClass.noCarryOnSorter(seatClass.getEconomySeatsList());
+                seatClass.noCarryOnSorter(seatClass.getEconomyPlusSeatsList());
             }
             //If sorting by luggage only
             else {
@@ -168,6 +197,7 @@ public class PassengerSorterSelector
                 luggage.smallCarryOnSorter(passengerList);
                 luggage.mediumCarryOnSorter(passengerList);
                 luggage.largeCarryOnSorter(passengerList);
+                luggage.noCarryOnSorter(passengerList);
             }
 
         }
@@ -184,4 +214,45 @@ public class PassengerSorterSelector
 			return false;
 		}
 	}
+
+    public PassengerSorter getFemale() {
+        return female;
+    }
+
+    public PassengerSorter getMale() {
+        return male;
+    }
+
+    public PassengerSorter getAge() {
+        return age;
+    }
+
+    public PassengerSorter getSeatClass() {
+        return seatClass;
+    }
+
+    public PassengerSorter getLuggage() {
+        return luggage;
+    }
+
+    public boolean isSortGender() {
+        return sortGender;
+    }
+
+    public boolean isSortSeatClass() {
+        return sortSeatClass;
+    }
+
+    public boolean isSortAge() {
+        return sortAge;
+    }
+
+    public boolean isSortBaggage() {
+        return sortBaggage;
+    }
+
+    public ArrayList<Passenger> getOrigList()
+    {
+        return origList;
+    }
 }

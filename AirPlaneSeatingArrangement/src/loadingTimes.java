@@ -3,15 +3,17 @@ import java.util.ArrayList;
 public class loadingTimes {
     private double estUnloadingTime;
     private ArrayList<Passenger> passengers = new ArrayList<Passenger>();
-    private ArrayList<ArrayList<Passenger>> seatedPassengers = new ArrayList<ArrayList<Passenger>>();
+    private Passenger planeSeatingChart[][] = new Passenger[][] {
+        new Passenger[2], new Passenger[2], new Passenger[2], new Passenger[2], new Passenger[2], new Passenger[2], new Passenger[2], new Passenger[2],
+        new Passenger[3], new Passenger[3],  new Passenger[3], new Passenger[3],  new Passenger[3], new Passenger[3],  new Passenger[3], new Passenger[3],  new Passenger[3], new Passenger[3],  new Passenger[3], new Passenger[3],  new Passenger[3], new Passenger[3],  new Passenger[3], new Passenger[3],  new Passenger[3], new Passenger[3], 
+        new Passenger[3], new Passenger[3],  new Passenger[3], new Passenger[3],  new Passenger[3], new Passenger[3],  new Passenger[3], new Passenger[3],  new Passenger[3], new Passenger[3],  new Passenger[3], new Passenger[3],  new Passenger[3], new Passenger[3],  new Passenger[3], new Passenger[3],  new Passenger[3], new Passenger[3],  new Passenger[3], new Passenger[3],  new Passenger[3], new Passenger[3],  new Passenger[3], new Passenger[3],  new Passenger[3], new Passenger[3],  new Passenger[3], new Passenger[3],  new Passenger[3], new Passenger[3],  new Passenger[3], new Passenger[3]
+
+    };
     
-    public ArrayList<Passenger> getPassengers() {
-        return passengers;
-    }
-
-
-    public void setPassengers(ArrayList<Passenger> passengers) {
+    public loadingTimes(ArrayList<Passenger> passengers, Passenger planeSeatingChart[][])
+    {
         this.passengers = passengers;
+        this.planeSeatingChart = planeSeatingChart;
     }
 
     public double getEstUnloadingTime() {
@@ -51,18 +53,4 @@ public class loadingTimes {
         }  
     }
 
-
-    public void setEstUnloadingTime(double estUnloadingTime) {
-        this.estUnloadingTime = estUnloadingTime;
-    }
-
-
-    public ArrayList<ArrayList<Passenger>> getSeatedPassengers() {
-        return seatedPassengers;
-    }
-
-
-    public void setSeatedPassengers(ArrayList<ArrayList<Passenger>> seatedPassengers) {
-        this.seatedPassengers = seatedPassengers;
-    }
 }

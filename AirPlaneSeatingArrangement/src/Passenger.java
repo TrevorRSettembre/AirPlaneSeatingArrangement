@@ -9,6 +9,7 @@ public class Passenger {
     private double comfort;
     private String carryonSize;
     private int id;
+    private int carryonSizeNum;
     
 
 
@@ -202,15 +203,23 @@ public class Passenger {
         this.pickedSeat = pickedSeat;
     }
 
-    public ArrayList getNeighbors() {
+    public ArrayList<Passenger> getNeighbors() {
         return neighbors;
     }
 
-    public void setNeighbors(ArrayList neighbors) {
+    public void setNeighbors(ArrayList<Passenger> neighbors) {
         this.neighbors = neighbors;
     }
 
+    public int getCarryOnSizeNum()
+    {
+        return carryonSizeNum;
+    }
 
+    public void setCarryOnSizeNum(int carryonSizeNum)
+    {
+        this.carryonSizeNum = carryonSizeNum;
+    }
 
 
 
