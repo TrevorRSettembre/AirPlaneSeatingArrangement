@@ -111,9 +111,14 @@ public class SeatingChart {
         return fit;
     }
 
-    public void seatClass()
+    public void seatClass(PassengerSorter currSort)
     {
+        int j = 0;
+        ArrayList<Passenger> currList = currSort.getFirstClassList();
+        for(int i = 0; i < currList.size(); i++)
+        {
 
+        }
 
 
 
@@ -121,30 +126,56 @@ public class SeatingChart {
 
     public void seatAge()
     {
-        if(selected.isSortAge())
-        {
-
-        }
+        PassengerSorter currSort = selected.getAge();
+        if(selected.isSortSeatClass())
+                {
+                seatClass(currSort);
+                }
     }
 
     public void seatGender()
     {
-        if(selected.isSortGender())
-        {
+
             PassengerSorter currSort1 = selected.getFemale();
             PassengerSorter currSort2 = selected.getMale();
             if(selected.isSortAge())
             {
                 if(selected.isSortSeatClass())
                 {
-                    int j = 0;
-                    ArrayList currList = currSort1.getFirstClassList();
-                    for(int i = 0; i < currList.size(); i++)
-                    {
-
-                    }
+                    seatClass(currSort1);
+                    seatClass(currSort2);
                 }
             }
+
+    }
+
+    public void seatRandom()
+    {
+        
+    }
+
+    public void startSort() 
+    {
+        if(selected.isSortGender())
+        {
+            seatGender();
+        }
+        else if(selected.isSortAge())
+        {
+            seatAge();
+        }
+        else if(selected.isSortSeatClass())
+        {
+            PassengerSorter currSort = selected.getSeatClass();
+            seatClass(currSort);
+        }
+        else if(selected.isSortBaggage())
+        {
+            //add seat baggage
+        }
+        else
+        {
+            seatRandom();
         }
     }
 }
