@@ -3,17 +3,12 @@ import java.util.ArrayList;
 public class loadingTimes {
     private double estUnloadingTime;
     private ArrayList<Passenger> passengers = new ArrayList<Passenger>();
-    private Passenger planeSeatingChart[][] = new Passenger[][] {
-        new Passenger[2], new Passenger[2], new Passenger[2], new Passenger[2], new Passenger[2], new Passenger[2], new Passenger[2], new Passenger[2],
-        new Passenger[3], new Passenger[3],  new Passenger[3], new Passenger[3],  new Passenger[3], new Passenger[3],  new Passenger[3], new Passenger[3],  new Passenger[3], new Passenger[3],  new Passenger[3], new Passenger[3],  new Passenger[3], new Passenger[3],  new Passenger[3], new Passenger[3],  new Passenger[3], new Passenger[3], 
-        new Passenger[3], new Passenger[3],  new Passenger[3], new Passenger[3],  new Passenger[3], new Passenger[3],  new Passenger[3], new Passenger[3],  new Passenger[3], new Passenger[3],  new Passenger[3], new Passenger[3],  new Passenger[3], new Passenger[3],  new Passenger[3], new Passenger[3],  new Passenger[3], new Passenger[3],  new Passenger[3], new Passenger[3],  new Passenger[3], new Passenger[3],  new Passenger[3], new Passenger[3],  new Passenger[3], new Passenger[3],  new Passenger[3], new Passenger[3],  new Passenger[3], new Passenger[3],  new Passenger[3], new Passenger[3]
-
-    };
     
-    public loadingTimes(ArrayList<Passenger> passengers, Passenger planeSeatingChart[][])
+    
+    public loadingTimes(ArrayList<Passenger> passengers)
     {
         this.passengers = passengers;
-        this.planeSeatingChart = planeSeatingChart;
+       
     }
 
     public double getEstUnloadingTime() {

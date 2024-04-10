@@ -201,6 +201,7 @@ public class PassengerSorterSelector
             }
 
         }
+        in.close();
     }
 
     public boolean checkAnswerInput(String input)

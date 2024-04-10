@@ -10,7 +10,10 @@ public class Passenger {
     private String carryonSize;
     private int id;
     private int carryonSizeNum;
+    private boolean fit;
     
+
+    private int boardGroup;
 
 
     private String pickedSeat;//should be set to "NULL" if passenger did not choose a seat
@@ -221,9 +224,19 @@ public class Passenger {
         this.carryonSizeNum = carryonSizeNum;
     }
 
+    public int getBoardGroup() {
+        return boardGroup;
+    }
 
+    public void setBoardGroup(int boardGroup) {
+        this.boardGroup = boardGroup;
+    }
 
+    public boolean isFit() {
+        return fit;
+    }
 
-
-
+    public void setFit(boolean fit) {
+        this.fit = fit;
+    }
 }

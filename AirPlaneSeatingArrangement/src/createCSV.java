@@ -23,7 +23,7 @@ public class createCSV {
 
     public void getInfo()
     {
-        loadingTimes load = new loadingTimes(chart.getPassList(), chart.getPlaneSeatingChart());
+        loadingTimes load = new loadingTimes(chart.getPassList());
         load.setEstUnloadingTime();
         unloadingTime = load.getEstUnloadingTime();
 
@@ -38,14 +38,15 @@ public class createCSV {
     {
         getInfo();
         writeLoadingTime(fileName);
+        //estimated loading time
         writeAvgComfort(fileName);
-        writePassengers(fileName, "Passenger Data");
+        //writePassengers(fileName, "Passenger Data");
         for(int i = 0; i < 8; i++)
         {
             for(int j = 0; j < 2; j++)
             {
                 Passenger p = planeSeatingChart[i][j];
-                String info = p.getSeat() + "," + p.getFirstName() + "," + p.getLastName() + "," + p.getCarryonSize() + "," + p.getComfort();
+                String info = p.getSeat() + "," + p.getGroup() + "," + p.getFirstName() + "," + p.getLastName() + "," + p.getCarryonSize() + "," + p.getComfort() + "," + p.lugaggeFit();
                 writePassengers(fileName, info);
             }
         }
@@ -54,7 +55,7 @@ public class createCSV {
             for(int j = 0; j < 3; j++)
             {
                 Passenger p = planeSeatingChart[i][j];
-                String info = p.getSeat() + "," + p.getFirstName() + "," + p.getLastName() + "," + p.getCarryonSize() + "," + p.getComfort();
+                String info = p.getSeat() + "," + p.getGroup() + "," + p.getFirstName() + "," + p.getLastName() + "," + p.getCarryonSize() + "," + p.getComfort() + "," + p.lugaggeFit();
                 writePassengers(fileName, info);
             }
         }
@@ -63,7 +64,7 @@ public class createCSV {
             for(int j = 0; j < 3; j++)
             {
                 Passenger p = planeSeatingChart[i][j];
-                String info = p.getSeat() + "," + p.getFirstName() + "," + p.getLastName() + "," + p.getCarryonSize() + "," + p.getComfort();
+                String info = p.getSeat() + "," + p.getGroup() + "," + p.getFirstName() + "," + p.getLastName() + "," + p.getCarryonSize() + "," + p.getComfort() + "," + p.lugaggeFit();
                 writePassengers(fileName, info);
             }
         }
