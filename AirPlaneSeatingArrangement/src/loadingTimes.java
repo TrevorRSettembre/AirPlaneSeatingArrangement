@@ -3,15 +3,12 @@ import java.util.ArrayList;
 public class loadingTimes {
     private double estUnloadingTime;
     private ArrayList<Passenger> passengers = new ArrayList<Passenger>();
-    private ArrayList<ArrayList<Passenger>> seatedPassengers = new ArrayList<ArrayList<Passenger>>();
     
-    public ArrayList<Passenger> getPassengers() {
-        return passengers;
-    }
-
-
-    public void setPassengers(ArrayList<Passenger> passengers) {
+    
+    public loadingTimes(ArrayList<Passenger> passengers)
+    {
         this.passengers = passengers;
+       
     }
 
     public double getEstUnloadingTime() {
@@ -51,18 +48,4 @@ public class loadingTimes {
         }  
     }
 
-
-    public void setEstUnloadingTime(double estUnloadingTime) {
-        this.estUnloadingTime = estUnloadingTime;
-    }
-
-
-    public ArrayList<ArrayList<Passenger>> getSeatedPassengers() {
-        return seatedPassengers;
-    }
-
-
-    public void setSeatedPassengers(ArrayList<ArrayList<Passenger>> seatedPassengers) {
-        this.seatedPassengers = seatedPassengers;
-    }
 }
