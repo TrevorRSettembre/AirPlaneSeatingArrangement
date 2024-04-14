@@ -1,13 +1,10 @@
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class RandomPassengerCSV {
 
-
-
     private RandomNumberGen randomNumberGen = new RandomNumberGen();
     private SelectedSeat selectedSeat = new SelectedSeat();
-    
+    private SelectedSeat findSeatLocation = new SelectedSeat();
     private FileManager passengerCSVWritew = new FileManager("AirPlaneSeatingArrangement\\src\\Names");
 
     private FileManager firstNameMenReader = new FileManager("AirPlaneSeatingArrangement\\src\\Names\\FirstNameMen.txt");
@@ -18,18 +15,29 @@ public class RandomPassengerCSV {
     private ArrayList<String> firstNamesWomen = new ArrayList<String>(firstNameWomenReader.readFirstLastNameFile());
     private ArrayList<String> lastNames = new ArrayList<String>(lastNameReader.readFirstLastNameFile());
 
-    private int planeMax;
     private int passengerCount;
+    
+    private int firstClassCount = 16;
+    private int secondClassCount = 54;
+    private int thirdClassCount = 96;
 
-
+    private int min = 1;
+    private int max = 3;
+    private int fcs = 0;
+    private int epcs = 0;
+    private int ecs  = 0;
+    private int r = 0;
+    private boolean hasRunFCS = false;
+    private boolean hasRunEPCS = false;
+    private boolean hasRunECS = false;
     /**
      * 
      * @param planeMax
      * @param passengerCount make it random
      */
-    public RandomPassengerCSV(int planeMax, int passengerCount){
+    public RandomPassengerCSV(int passengerCount){
 
-        this.planeMax = planeMax;
+       
         //min number of passengers?
         //for now max 56
         this.passengerCount = passengerCount;
@@ -85,7 +93,7 @@ public class RandomPassengerCSV {
         int i = randomNumberGen.RandomInt(0, 3);
         switch (i) {
             case 0:
-                carryon[0] = "NA";
+                carryon[0] = "NULL";
                 carryon[1] = "0";
                 break;
 
@@ -105,8 +113,6 @@ public class RandomPassengerCSV {
                 break;
 
             default:
-                carryon[0] = "NA";
-                carryon[1] = "0";
                 break;
         }
 
@@ -376,6 +382,7 @@ public class RandomPassengerCSV {
             passengerStats.add(namesGender[2]);
             passengerStats.add(generateAge());
             passengerStats.add(carryon[0]);
+
             /**
              * 0 = first
              * 1 = econplus
@@ -447,7 +454,62 @@ public class RandomPassengerCSV {
 
             }
 
+            int firstClassGroupCount = 0;
+            for(int i=0;i < groups.get(0).size();i++){
+                firstClassGroupCount += groups.get(0).get(i).size();
+            }
+
+            if(!hasRunFCS){
+                fcs = firstClassCount - firstClassGroupCount;
+                hasRunFCS = true;
+            }
+
+            int econPlusClassGroupCount = 0;
+            for(int i=0;i < groups.get(1).size();i++){
+                econPlusClassGroupCount += groups.get(1).get(i).size();
+            }
+
+            if(!hasRunEPCS){
+                epcs = secondClassCount - econPlusClassGroupCount;
+                hasRunEPCS = true;
+            }
+
+            int econClassGroupCount = 0;
+            for(int i=0;i < groups.get(2).size();i++){
+                econClassGroupCount += groups.get(2).get(i).size();
+            }
+
+            if(!hasRunECS){
+                ecs = thirdClassCount - econClassGroupCount;
+                hasRunECS = true;
+            }
            
+           
+            /**
+             * 16 in first
+             * 54 in secound
+             * 96 in third
+             */
+            if(passengerStats.size() == 7){
+                String seatNumber = passengerStats.get(6);
+                if(findSeatLocation.isInFirst(seatNumber)){
+                    passengerStats.add("first");
+                }else if(findSeatLocation.isInSecond(seatNumber)){
+                    passengerStats.add("second");
+                }else{
+                    passengerStats.add("third");
+                }              
+            }else{ 
+                if(fcs >= 0){
+                    passengerStats.add("first");
+                    fcs--;
+                }else if(fcs <= 0 && epcs >= 0){
+                    passengerStats.add("second");
+                    epcs--;
+                }else{
+                    passengerStats.add("third");
+                }
+            }
            
             /*
              * turns arraylist into stringbuilder which is 
@@ -460,6 +522,8 @@ public class RandomPassengerCSV {
                     css.append(",");
                 }
             }
+            
+            // read each line and add it as the final thing might be easy since i can read if they have a seat
             passengerCSVWritew.fileWriter(fileName, css.toString());
             
 
