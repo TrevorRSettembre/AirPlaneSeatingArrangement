@@ -485,6 +485,7 @@ public class RandomPassengerCSV {
             }
            
            
+           
             /**
              * 16 in first
              * 54 in secound
@@ -492,22 +493,26 @@ public class RandomPassengerCSV {
              */
             if(passengerStats.size() == 7){
                 String seatNumber = passengerStats.get(6);
+                if(Character.isDigit(seatNumber.charAt(0))){
+                    seatNumber = seatNumber.substring(1);
+                    passengerStats.set(6, seatNumber);
+                }
                 if(findSeatLocation.isInFirst(seatNumber)){
-                    passengerStats.add("first");
+                    passengerStats.add("F");
                 }else if(findSeatLocation.isInSecond(seatNumber)){
-                    passengerStats.add("second");
+                    passengerStats.add("P");
                 }else{
-                    passengerStats.add("third");
+                    passengerStats.add("E");
                 }              
             }else{ 
-                if(fcs >= 0){
-                    passengerStats.add("first");
+                if(fcs > 0){
+                    passengerStats.add("F");
                     fcs--;
-                }else if(fcs <= 0 && epcs >= 0){
-                    passengerStats.add("second");
+                }else if(fcs == 0 && epcs > 0){
+                    passengerStats.add("P");
                     epcs--;
                 }else{
-                    passengerStats.add("third");
+                    passengerStats.add("E");
                 }
             }
            
@@ -532,3 +537,5 @@ public class RandomPassengerCSV {
     }
 
 }
+
+

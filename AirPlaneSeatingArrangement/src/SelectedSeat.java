@@ -330,7 +330,7 @@ public class SelectedSeat {
     }
 
     public boolean isInSecond(String check){      
-        for(ArrayList<String> row : firstClass){
+        for(ArrayList<String> row : secondClass){
             if(row.contains(check)){
                 return true;
             }
@@ -338,14 +338,14 @@ public class SelectedSeat {
         return false;
     }
 
-    public boolean isInThrid(String check){      
-        for(ArrayList<String> row : firstClass){
-            if(row.contains(check)){
-                return true;
-            }
-        }
-        return false;
-    }
+    // public boolean isInThrid(String check){      
+    //     for(ArrayList<String> row : firstClass){
+    //         if(row.contains(check)){
+    //             return true;
+    //         }
+    //     }
+    //     return false;
+    // }
 
 
 
