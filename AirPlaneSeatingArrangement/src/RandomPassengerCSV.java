@@ -506,12 +506,15 @@ public class RandomPassengerCSV {
                 }              
             }else{ 
                 if(fcs > 0){
+                    passengerStats.add("NULL");
                     passengerStats.add("F");
                     fcs--;
                 }else if(fcs == 0 && epcs > 0){
+                    passengerStats.add("NULL");
                     passengerStats.add("P");
                     epcs--;
                 }else{
+                    passengerStats.add("NULL");
                     passengerStats.add("E");
                 }
             }

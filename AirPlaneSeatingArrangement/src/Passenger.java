@@ -241,13 +241,15 @@ public class Passenger {
     }
 
 
-    public String getGroup() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getGroup'");
+    public ArrayList<Passenger> getGroup() 
+    {
+        return group;
     }
 
-    public String lugaggeFit() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'lugaggeFit'");
+    public void setGroup(ArrayList<Passenger> group)
+    {
+        this.group = group;
     }
+
+    
 }
