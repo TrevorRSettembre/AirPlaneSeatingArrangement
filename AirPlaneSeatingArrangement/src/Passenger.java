@@ -9,15 +9,13 @@ public class Passenger {
     private double comfort;
     private String carryonSize;
     private int id;
-    
-
+    private int boardingGroup;
 
     private String pickedSeat;//should be set to "NULL" if passenger did not choose a seat
     private String pickedClass;//should be either "F" for first class or "E" for economy "P" for economy plus
     private ArrayList<Passenger> neighbors = new ArrayList<Passenger>();
     private String seat;
     private ArrayList<Passenger> group = new ArrayList<Passenger>();
-    
 
     private String seatClass;// should be "F" for first, "E" for economy, and "P" for economy plus
     //Specific seat?
@@ -70,6 +68,22 @@ public class Passenger {
     public String getGender(){
         return gender;
     }
+
+    public void setBoardingGroup(int num)
+    {
+        this.boardingGroup = num;
+    }
+
+    public int getBourdingGroup()
+    {
+        return boardingGroup;
+    }
+
+    public String getSeatClass()
+    {
+        return seatClass;
+    }
+
 
     public void setComfort(){
         if(pickedSeat != "NULL")
@@ -201,12 +215,6 @@ public class Passenger {
     public void setNeighbors(ArrayList neighbors) {
         this.neighbors = neighbors;
     }
-
-
-
-
-
-
 
 
 }

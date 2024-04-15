@@ -10,12 +10,7 @@ public class PassengerSorter
     private ArrayList<Passenger> mediumCarryOns;
     private ArrayList<Passenger> largeCarryOns;
 
-    
     private double avgComfort;
-
-
-
-
 
     public void femaleSorter(ArrayList<Passenger>passengerList) 
     {
