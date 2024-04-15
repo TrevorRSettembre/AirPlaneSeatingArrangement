@@ -240,13 +240,14 @@ public class Passenger {
         this.fit = fit;
     }
 
-    public ArrayList<Passenger> getGroup() 
-    {
-        return group;
+
+    public String getGroup() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getGroup'");
     }
 
-    public void setGroup(ArrayList<Passenger> group)
-    {
-        this.group = group;
+    public String lugaggeFit() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'lugaggeFit'");
     }
 }

@@ -4,12 +4,12 @@ public class SelectedSeat {
 
             
     
-        private String[] firstClassLetters = {"A","B","E","F"};
-        private String[] econLetters = {"A","B","C","D","E","F"};
+        // private String[] firstClassLetters = {"A","B","E","F"};
+        // private String[] econLetters = {"A","B","C","D","E","F"};
 
-        private ArrayList<String> firstClassSeats = new ArrayList<String>();
-        private ArrayList<String> econPlusSeats = new ArrayList<String>();
-        private ArrayList<String> econSeats = new ArrayList<String>();
+        // private ArrayList<String> firstClassSeats = new ArrayList<String>();
+        // private ArrayList<String> econPlusSeats = new ArrayList<String>();
+        // private ArrayList<String> econSeats = new ArrayList<String>();
 
         private ArrayList<String> frow1 = new ArrayList<String>();
         private ArrayList<String> frow2 = new ArrayList<String>();
@@ -47,6 +47,10 @@ public class SelectedSeat {
         private int econPlusLength = 9;
         private int econLength = 16;
         
+        private ArrayList<ArrayList<String>> firstClass = new ArrayList<ArrayList<String>>();
+        private ArrayList<ArrayList<String>> secondClass = new ArrayList<ArrayList<String>>();
+        private ArrayList<ArrayList<String>> thirdClass = new ArrayList<ArrayList<String>>();
+
 
     public SelectedSeat(){
         //First class
@@ -69,6 +73,11 @@ public class SelectedSeat {
         frow4.add("B4");
         frow4.add("E4");
         frow4.add("F4");
+
+        firstClass.add(frow1);
+        firstClass.add(frow2);
+        firstClass.add(frow3);
+        firstClass.add(frow4);
 
         //Econ plus
         eprow7.add("A7");
@@ -133,6 +142,16 @@ public class SelectedSeat {
         eprow21.add("D21");
         eprow21.add("E21");
         eprow21.add("F21");
+
+        secondClass.add(eprow7);
+        secondClass.add(eprow8);
+        secondClass.add(eprow10);
+        secondClass.add(eprow11);
+        secondClass.add(eprow12);
+        secondClass.add(eprow14);
+        secondClass.add(eprow15);
+        secondClass.add(eprow20);
+        secondClass.add(eprow21);
 
         //Econ rows
         erow22.add("A22");
@@ -246,42 +265,92 @@ public class SelectedSeat {
         erow38.add("D38");
         erow38.add("E38");
         erow38.add("F38");
-        
+
+        thirdClass.add(erow22);
+        thirdClass.add(erow23);
+        thirdClass.add(erow24);
+        thirdClass.add(erow25);
+        thirdClass.add(erow26);
+        thirdClass.add(erow27);
+        thirdClass.add(erow28);
+        thirdClass.add(erow29);
+        thirdClass.add(erow30);
+        thirdClass.add(erow31);
+        thirdClass.add(erow32);
+        thirdClass.add(erow34);
+        thirdClass.add(erow35);
+        thirdClass.add(erow36);
+        thirdClass.add(erow37);
+        thirdClass.add(erow38);
         
 
         
 
-        /**
-        * creats array of econPlus seats
-        */
-        for(int i=0;i<econLetters.length;i++){
-            for(int j=0; j<econPlusLength+2;j++){
-               if((j+7) != 9){
-                    if((j+7) != 13){
-                       if((j+7) >= 16){
-                        econPlusSeats.add(econLetters[i].concat(Integer.toString(j + 11)));
-                       }else{
-                        econPlusSeats.add(econLetters[i].concat(Integer.toString(j + 7)));
-                       }
-                    }
-                }
-            }
-        }
+        // /**
+        // * creats array of econPlus seats
+        // */
+        // for(int i=0;i<econLetters.length;i++){
+        //     for(int j=0; j<econPlusLength+2;j++){
+        //        if((j+7) != 9){
+        //             if((j+7) != 13){
+        //                if((j+7) >= 16){
+        //                 econPlusSeats.add(econLetters[i].concat(Integer.toString(j + 11)));
+        //                }else{
+        //                 econPlusSeats.add(econLetters[i].concat(Integer.toString(j + 7)));
+        //                }
+        //             }
+        //         }
+        //     }
+        // }
 
-        /**
-        * creates array of econ seats
-        */
-        for(int i=0;i<econLetters.length;i++){
-            for(int j=0;j<econLength+1;j++){
-                if((j+22) != 33){
-                    econSeats.add(econLetters[i].concat(Integer.toString(j + 22)));
-                }
-            }
-        }
+        // /**
+        // * creates array of econ seats
+        // */
+        // for(int i=0;i<econLetters.length;i++){
+        //     for(int j=0;j<econLength+1;j++){
+        //         if((j+22) != 33){
+        //             econSeats.add(econLetters[i].concat(Integer.toString(j + 22)));
+        //         }
+        //     }
+        // }
 
 
 
     }
+
+
+    
+    public boolean isInFirst(String check){      
+        for(ArrayList<String> row : firstClass){
+            if(row.contains(check)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean isInSecond(String check){      
+        for(ArrayList<String> row : secondClass){
+            if(row.contains(check)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // public boolean isInThrid(String check){      
+    //     for(ArrayList<String> row : firstClass){
+    //         if(row.contains(check)){
+    //             return true;
+    //         }
+    //     }
+    //     return false;
+    // }
+
+
+
+
+
 
     /**
      * 1, 2, 3, 4
