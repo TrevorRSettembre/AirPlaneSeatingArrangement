@@ -3,48 +3,29 @@ import java.util.ArrayList;
 public class Main {
     public static void main(String[] args) throws Exception {
 
-        RandomNumberGen randomNumberGen = new RandomNumberGen();
 
-    //passengerGroup.get(firstclass).get(firstClass group one).get(id)
-
-    /**
-     * 
-     */
-    //randomNumberGen.RandomInt(50, 56)
     int passengerCount = 166;
-    //fix plane max later
-    FileManager fileManager = new FileManager("passengerInfo.csv");
-    RandomPassengerCSV randomPassengerCSV = new RandomPassengerCSV(166, passengerCount);
+    RandomPassengerCSV randomPassengerCSV = new RandomPassengerCSV(passengerCount);
 
     randomPassengerCSV.createPassengerCSV();
 
+    CreatePassenegerList createPassenegerList = new CreatePassenegerList();
+
+    ArrayList<Passenger> passengers = new ArrayList<Passenger>();
+    passengers = createPassenegerList.fillInStats();
     
-
-
-
-//     ArrayList<String[]> passengerStats = new ArrayList<String[]>();
-//     passengerStats = fileManager.randomPassengerFileReader();
-//     // for(String[] i : passengerStats){
-//     //     for(String p : i){
-//     //         System.out.print(p + " ");
-//     //     }
-//     //     System.out.println();
-//     // }
-
-//     ArrayList<Passenger> passengers = new ArrayList<Passenger>();    
-
-//     for(int i = 0;i<passengerStats.size()-1;i++){
-//         passengers.add(new Passenger());
-
-//     }
-// //write a commment for order of p stats
-//     for(int i = 0;i<passengers.size()-1;i++){
-//         passengers.get(i).setId(Integer.parseInt(passengerStats.get(i)[0]));
-//     }
-//     System.out.println(passengers.size());
-//     // for(int i = 0;i<passengers.size()-1;i++){
-//     //     System.out.println(passengers.get(i).getId());
-//     // }
-
-    }
+    // for (Passenger passenger : passengers) {
+    //     System.out.print(passenger.getId());
+    //     System.out.print(passenger.getFirstName());
+    //     System.out.print(passenger.getLastName());
+    //     System.out.print(passenger.getGender());
+    //     System.out.print(passenger.getAge());
+    //     System.out.print(passenger.getCarryonSize());
+    //     if(passenger.getSeat() != null){
+    //         System.out.print(passenger.getSeat());
+    //     }
+    //     System.out.println();
+    // }
+    
+}
 }

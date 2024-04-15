@@ -239,4 +239,14 @@ public class Passenger {
     public void setFit(boolean fit) {
         this.fit = fit;
     }
+
+    public String getGroup() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getGroup'");
+    }
+
+    public String lugaggeFit() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'lugaggeFit'");
+    }
 }
