@@ -240,6 +240,7 @@ public class Passenger {
         this.fit = fit;
     }
 
+
     public String getGroup() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getGroup'");

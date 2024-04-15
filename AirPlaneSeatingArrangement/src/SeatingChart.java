@@ -9,12 +9,21 @@ public class SeatingChart {
         new Passenger[3], new Passenger[3],  new Passenger[3], new Passenger[3],  new Passenger[3], new Passenger[3],  new Passenger[3], new Passenger[3],  new Passenger[3], new Passenger[3],  new Passenger[3], new Passenger[3],  new Passenger[3], new Passenger[3],  new Passenger[3], new Passenger[3],  new Passenger[3], new Passenger[3],  new Passenger[3], new Passenger[3],  new Passenger[3], new Passenger[3],  new Passenger[3], new Passenger[3],  new Passenger[3], new Passenger[3],  new Passenger[3], new Passenger[3],  new Passenger[3], new Passenger[3],  new Passenger[3], new Passenger[3]
 
     };
+
+    private String planeSeats[][] = new String[][] {
+        {"A01", "B01"}, {"C01", "D01"}, {"A02","B02"}, {"C02","D02"}, {"A03","B03"}, {"C03","D03"}, {"A04","B04"}, {"C04","D04"},
+        {"A07","B07","C07"}, {"D07","E07","F07"},  {"A08","B08","C08"}, {"D08","E08","F08"},  {"A10","B10","C10"}, {"D10","E10","F10"},  {"A11","B11","C11"}, {"D11","E11","F11"}, {"A12","B12","C12"}, {"D12","E12","F12"},  {"A14","B14","C14"}, {"D14","E14","F14"},  {"A15","B15","C15"},  {"D15","E15","F15"}, {"A20","B20","C20"},  {"D20","E20","F20"}, {"A21","B21","C21"},  {"D21","E21","F21"}, 
+        {"A22","B22","C22"}, {"D22","E22","F22"},  {"A23","B23","C23"}, {"D23","E23","F23"},  {"A24","B24","C24"}, {"D24","E24","F24"},  {"A25","B25","C25"}, {"D25","E25","F25"}, {"A26","B26","C26"}, {"D26","E26","F26"},  {"A27","B27","C27"}, {"D27","E27","F27",},  {"A28", "B28", "C28"},  {"D28","E28","F28"}, {"A29","B29","C29"}, {"D29","E29","F29"}, {"A30","B30","C30"}, {"D30","E30","F30"}, {"A31","B31","C31"}, {"D31","E31","F31"},  {"A32","B32","C32"}, {"D32","E32","F32"}, {"A34","B34","C34"}, {"D34","E34","F34"}, {"A35","B35","C35"}, {"D35","E35","F35"}, {"A36","B36","C36"},  {"D36","E36","F36"}, {"A37","B37","C37"},  {"D37","E37","F37"},  {"A38","B38","C38"}, {"D38","E38","F38"},
+
+    };
+
     private Passenger firstClass[][] = new Passenger[8][2];
     private Passenger econPlus[][] = new Passenger[18][3];
     private Passenger econ[][] = new Passenger[32][3];
     private PassengerSorterSelector selected;
     private ArrayList<Passenger> passList;
     private double avgComfort;
+
 
     public double getAvgComfort() {
         return avgComfort;
@@ -188,7 +197,7 @@ public class SeatingChart {
 
         return fit;
     }
-    //need to add baggage to this
+
     public void seatClass(PassengerSorter currSort)
     {
         int i = 0;
@@ -509,16 +518,20 @@ public class SeatingChart {
     //starts the sorting process, need to add baggage
     public void startSort() 
     {
+
         if(selected.isSortGender())
         {
+            fillPickedSeats();
             seatGender();
         }
         else if(selected.isSortAge())
         {
+            fillPickedSeats();
             seatAge();
         }
         else if(selected.isSortSeatClass())
         {
+            fillPickedSeats();
             PassengerSorter currSort = selected.getSeatClass();
             seatClass(currSort);
         }
@@ -528,7 +541,104 @@ public class SeatingChart {
         }
         else
         {
+            fillPickedSeats();
             seatRandom();
+        }
+
+        fillSeatingChart();
+        addSeats();
+        
+
+    }
+
+    public void findGroups()
+    {
+        for(int i = 0; i < 8; i++)
+        {
+            for(int j = 0; j < 2; j++)
+            {
+                if(!(firstClass[i][j] == null))
+                {
+                    ArrayList<Passenger> group = new ArrayList<Passenger>();
+                    while(!(firstClass[i][j] == null))
+                    {
+                       group.add(firstClass[i][j]);
+                       if(j == 1)
+                       {
+                        j = 0;
+                        i++;
+                       }
+                       else if(j == 0)
+                       {
+                        j++;
+                       }
+                    }
+                    int w = 0;
+                    while(w < group.size())
+                    {
+                        group.get(w).setGroup(group);
+                        w++;
+                    }
+                }
+            }
+        }
+        for(int i = 0; i < 18; i++)
+        {
+            for(int j = 0; j < 3; j++)
+            {
+                if(!(econPlus[i][j] == null))
+                {
+                    ArrayList<Passenger> group = new ArrayList<Passenger>();
+                    while(!(econPlus[i][j] == null))
+                    {
+                       group.add(econPlus[i][j]);
+                       if(j == 2)
+                       {
+                        j = 0;
+                        i++;
+                       }
+                       else if(j == 0)
+                       {
+                        j++;
+                       }
+                    }
+                    int w = 0;
+                    while(w < group.size())
+                    {
+                        group.get(w).setGroup(group);
+                        w++;
+                    }
+                }
+            }
+        }
+        for(int i = 0; i < 32; i++)
+        {
+            for(int j = 0; j < 3; j++)
+            {
+                if(!(econ[i][j] == null))
+                {
+                    ArrayList<Passenger> group = new ArrayList<Passenger>();
+                    while(!(econ[i][j] == null))
+                    {
+                       group.add(econ[i][j]);
+                       if(j == 2)
+                       {
+                        j = 0;
+                        i++;
+                       }
+                       else if(j == 0)
+                       {
+                        j++;
+                       }
+                    }
+                    int w = 0;
+                    while(w < group.size())
+                    {
+                        group.get(w).setGroup(group);
+                        w++;
+                    }
+                }
+            }
         }
     }
 
@@ -1237,35 +1347,198 @@ public class SeatingChart {
 
     }
 
+    public void findNeighbors()
+    {
+        for(int i = 0; i < 8; i++)
+        {
+            for(int j = 0; j < 2; j++)
+            {
+                boolean go = true;
+                ArrayList<Passenger> neigborhood = new ArrayList<Passenger>();
+                while(go)
+                {
+                    neigborhood.add(firstClass[i][j]);
+                    if(j == 1)
+                       {
+                        go = false;
+                       }
+                       else if(j == 0)
+                       {
+                        j++;
+                       }
+                }
+                int w = 0;
+                while(w < neigborhood.size())
+                {
+                    neigborhood.get(w).setGroup(neigborhood);
+                    w++;
+                }
+            }
+        }
+        for(int i = 0; i < 18; i++)
+        {
+            for(int j = 0; j < 3; j++)
+            {
+                boolean go = true;
+                ArrayList<Passenger> neigborhood = new ArrayList<Passenger>();
+                while(go)
+                {
+                    neigborhood.add(econPlus[i][j]);
+                    if(j == 2)
+                       {
+                        go = false;
+                       }
+                       else if(j == 0)
+                       {
+                        j++;
+                       }
+                }
+                int w = 0;
+                while(w < neigborhood.size())
+                {
+                    neigborhood.get(w).setGroup(neigborhood);
+                    w++;
+                }
+            }
+        }
+        for(int i = 0; i < 32; i++)
+        {
+            for(int j = 0; j < 3; j++)
+            {
+                boolean go = true;
+                ArrayList<Passenger> neigborhood = new ArrayList<Passenger>();
+                while(go)
+                {
+                    neigborhood.add(econ[i][j]);
+                    if(j == 2)
+                       {
+                        go = false;
+                       }
+                       else if(j == 0)
+                       {
+                        j++;
+                       }
+                }
+                int w = 0;
+                while(w < neigborhood.size())
+                {
+                    neigborhood.get(w).setGroup(neigborhood);
+                    w++;
+                }
+            }
+        }
+    }
+
     //takes the arrays for the seat classes and put them into the main seating chart array
     public void fillSeatingChart()
     {
+        int i = 0;
         for(int j = 0; j < 8; j++)
         {
             for(int k = 0; k < 2; k++)
             {
-                    planeSeatingChart[j][k] = firstClass[j][k];
+                    planeSeatingChart[i][k] = firstClass[j][k];
+                    i++;
             }
         }
         for(int l = 0; l < 18; l++)
         {
             for(int m = 0; m < 3; m++)
             {
-                planeSeatingChart[l][m] = econPlus[l][m];
+                planeSeatingChart[i][m] = econPlus[l][m];
+                i++;
             }
         }
         for(int n = 0; n < 32; n++)
         {
             for(int o = 0; o < 3; o++)
             {
-                planeSeatingChart[n][o] = econ[n][o];
+                planeSeatingChart[i][o] = econ[n][o];
+                i++;
             }
         }
+        findNeighbors();
     }
     //will first fill all of the picked seats
     public void fillPickedSeats()
     {
+    
+       ArrayList<Passenger> pickedPass = getPickedPassengers();
+       for(int i = 0; i < pickedPass.size(); i++)
+       {
+            for(int j = 0; j < 8; j++)
+            {
+                for(int k = 0; k < 2; k ++)
+                {
+                    if(planeSeats[j][k].equals(pickedPass.get(i).getPickedSeat()))
+                    {
+                        firstClass[j][k] = pickedPass.get(i);
+                    }
+                }
+            }
+            for(int j = 0; j < 18; j++)
+            {
+                for(int k = 0; k < 3; k ++)
+                {
+                    if(planeSeats[j][k].equals(pickedPass.get(i).getPickedSeat()))
+                    {
+                        econPlus[j][k] = pickedPass.get(i);
+                    }
+                }
+            }
+            for(int j = 0; j < 32; j++)
+            {
+                for(int k = 0; k < 3; k ++)
+                {
+                    if(planeSeats[j][k].equals(pickedPass.get(i).getPickedSeat()))
+                    {
+                        econ[j][k] = pickedPass.get(i);
+                    }
+                }
+            }
+       }
+       findGroups();
 
+    }
+
+    public ArrayList<Passenger> getPickedPassengers()
+    {
+        ArrayList<Passenger> pickedPass = new ArrayList<Passenger>();
+        for(int i = 0; i<passList.size(); i++)
+        {
+            Passenger currPass = passList.get(i);
+            if(!(currPass.getPickedSeat().equals("NULL")))
+            {
+                pickedPass.add(currPass);
+            }
+        }
+        return pickedPass;
+    }
+
+    public void addSeats()
+    {
+        int i = 0;
+        while( i < 8)
+        {
+            for(int j =0; j<2; j++)
+            {
+                planeSeatingChart[i][j].setSeat(planeSeats[i][j]);
+            }
+        }
+        while(i < 26)
+        {
+            for(int j = 0; j < 3; j++)
+            {
+                planeSeatingChart[i][j].setSeat(planeSeats[i][j]);
+            }
+        }
+        while(i < 58)
+        {
+            for(int j = 0; j < 3; j++)
+            {
+                planeSeatingChart[i][j].setSeat(planeSeats[i][j]);
+            }
+        }
     }
 
     public Passenger[][] getPlaneSeatingChart() 
