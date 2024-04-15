@@ -239,4 +239,14 @@ public class Passenger {
     public void setFit(boolean fit) {
         this.fit = fit;
     }
+
+    public ArrayList<Passenger> getGroup() 
+    {
+        return group;
+    }
+
+    public void setGroup(ArrayList<Passenger> group)
+    {
+        this.group = group;
+    }
 }
