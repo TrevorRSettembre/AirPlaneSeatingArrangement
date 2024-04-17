@@ -12,7 +12,7 @@ public class CreatePassenegerList {
         ArrayList<String[]> stats = new ArrayList<String[]>();
         stats = fileManager.randomPassengerFileReader();
 
-        //index id, seat, first name, last name, gender, age, carryon size, seat number
+        //index id, seat, first name, last name, gender, age, carryon size, seat number, class distintion
         for(int i = 0; i < stats.size();i++){
             Passenger passengerObj = new Passenger();
             passengers.add(passengerObj);
@@ -22,9 +22,9 @@ public class CreatePassenegerList {
             passengers.get(i).setGender(stats.get(i)[3]);
             passengers.get(i).setAge(Integer.parseInt(stats.get(i)[4]));
             passengers.get(i).setCarryonSize(stats.get(i)[5]);
-            if(stats.get(i).length == 7){
-                passengers.get(i).setSeat(stats.get(i)[6]);
-            }
+            passengers.get(i).setSeat(stats.get(i)[6]);
+            passengers.get(i).setSeatClass(stats.get(i)[7]);
+            
         }
 
         return passengers;
