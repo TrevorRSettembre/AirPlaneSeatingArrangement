@@ -13,18 +13,23 @@ public class Main {
     ArrayList<Passenger> passengers = new ArrayList<Passenger>();
     passengers = createPassenegerList.fillInStats();
     
-    // for (Passenger passenger : passengers) {
-    //     System.out.print(passenger.getId());
-    //     System.out.print(passenger.getFirstName());
-    //     System.out.print(passenger.getLastName());
-    //     System.out.print(passenger.getGender());
-    //     System.out.print(passenger.getAge());
-    //     System.out.print(passenger.getCarryonSize());
-    //     System.out.print(passenger.getSeat());
-    //     System.out.println(passenger.getSeatClass());
-    //     System.out.println();
-    // }
-       
+     //for (Passenger passenger : passengers) {
+       //  System.out.print(passenger.getId());
+         //System.out.print(passenger.getFirstName());
+         //System.out.print(passenger.getLastName());
+         //System.out.print(passenger.getGender());
+         //System.out.print(passenger.getAge());
+        //System.out.print(passenger.getCarryonSize());
+         //System.out.print(passenger.getSeat());
+        //System.out.println(passenger.getSeatClass());
+     //System.out.println();
+     //}
+      
+     for (Passenger passenger : passengers) 
+     {
+        passenger.setPickedSeat(passenger.getSeat());
+        passenger.setSeat(null);
+     }
 
     
     PassengerSorterSelector pss = new PassengerSorterSelector(passengers);

@@ -209,10 +209,14 @@ public class SeatingChart {
     public void seatClass(PassengerSorter currSort)
     {
         int i = 0;
+        
         ArrayList<Passenger> currList = currSort.getFirstClassList();
+        System.out.println(currList.get(i).getAge());
         while(i < currList.size())
-        {   if(!search(currList.get(i), firstClass))
+        {   
+            if(!search(currList.get(i), firstClass))
             {
+                
                 for(int j = 0; j < 8; j++)
                 {
                     for(int k = 0; k < 2; k++)
@@ -221,6 +225,7 @@ public class SeatingChart {
                         {
                             firstClass[j][k] = currList.get(i);
                             i++;
+                            
                         }
                     }
                 }
@@ -376,6 +381,7 @@ public class SeatingChart {
             {
                 seatClass(currSort1);
                 seatClass(currSort2);
+                
             }
             else
             {
@@ -484,6 +490,7 @@ public class SeatingChart {
     {
         int i = 0;
         ArrayList<Passenger> passengers = selected.getOrigList();
+        System.out.println(passengers.size());
         while(i < passengers.size())
         {
             for(int j = 0; j < 8; j++)
@@ -501,7 +508,7 @@ public class SeatingChart {
             {
                 for(int m = 0; m < 3; m++)
                 {
-                    if(econPlus[m][l] == null)
+                    if(econPlus[l][m] == null)
                     {
                         econPlus[l][m] = passengers.get(i);
                         i++;
@@ -523,6 +530,7 @@ public class SeatingChart {
             }
         }
         fillSeatingChart();
+        addSeats();
     }
     //starts the sorting process, need to add baggage
     public void startSort() 
@@ -558,6 +566,7 @@ public class SeatingChart {
             seatRandom();
            
         }
+
 
         fillSeatingChart();
         addSeats();
@@ -612,9 +621,9 @@ public class SeatingChart {
                         j = 0;
                         i++;
                        }
-                       else if(j == 0)
+                       else if(j == 0 || j == 1)
                        {
-                        j++;
+                            j++;
                        }
                     }
                     int w = 0;
@@ -641,7 +650,7 @@ public class SeatingChart {
                         j = 0;
                         i++;
                        }
-                       else if(j == 0)
+                       else if(j == 0 || j == 1)
                        {
                         j++;
                        }
@@ -1447,6 +1456,7 @@ public class SeatingChart {
     //takes the arrays for the seat classes and put them into the main seating chart array
     public void fillSeatingChart()
     {
+        System.out.println("ok");
         int i = 0;
         for(int j = 0; j < 8; j++)
         {
@@ -1498,6 +1508,7 @@ public class SeatingChart {
                     {
                         firstClass[j][k] = pickedPass.get(i);
                         
+                        
                     }
                 }
             }
@@ -1505,10 +1516,9 @@ public class SeatingChart {
             {
                 for(int k = 0; k < 3; k ++)
                 {
-                    if(planeSeats[j][k].equals(pickedPass.get(i).getPickedSeat()))
+                    if(planeSeats[j + 8][k].equals(pickedPass.get(i).getPickedSeat()))
                     {
                         econPlus[j][k] = pickedPass.get(i);
-                        
                     }
                 }
             }
@@ -1516,7 +1526,7 @@ public class SeatingChart {
             {
                 for(int k = 0; k < 3; k ++)
                 {
-                    if(planeSeats[j][k].equals(pickedPass.get(i).getPickedSeat()))
+                    if(planeSeats[j + 8 + 18][k].equals(pickedPass.get(i).getPickedSeat()))
                     {
                         econ[j][k] = pickedPass.get(i);
                     }
@@ -1543,26 +1553,29 @@ public class SeatingChart {
 
     public void addSeats()
     {
-        int i = 0;
-        while( i < 8)
+        
+        for(int i = 0; i < 8; i++)
         {
-            for(int j =0; j<2; j++)
+            for(int j =0; j < 2; j++)
             {
                 planeSeatingChart[i][j].setSeat(planeSeats[i][j]);
+                
             }
         }
-        while(i < 26)
+        for(int i = 8;i < 26; i++)
         {
             for(int j = 0; j < 3; j++)
             {
                 planeSeatingChart[i][j].setSeat(planeSeats[i][j]);
+                
             }
         }
-        while(i < 58)
+        for(int i = 26; i < 58; i++)
         {
             for(int j = 0; j < 3; j++)
             {
                 planeSeatingChart[i][j].setSeat(planeSeats[i][j]);
+                
             }
         }
     }

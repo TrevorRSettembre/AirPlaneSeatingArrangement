@@ -31,7 +31,7 @@ public class PassengerSorterSelector
         int ageInput = Integer.parseInt(answers.get(0)[1]);
         int classInput = Integer.parseInt(answers.get(0)[2]);
         int luggageInput = Integer.parseInt(answers.get(0)[3]);
-        int passengerSorter = Integer.parseInt(answers.get(0)[4]);
+        //int passengerSorter = Integer.parseInt(answers.get(0)[4]);
         
         //Sorting by gender
         if (genderInput == 1) {
@@ -203,7 +203,7 @@ public class PassengerSorterSelector
         String delimiter = ",";
 
         try {
-            File file = new File(filePath);
+            File file = new File(fileName);
             FileReader fileReader = new FileReader(file);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             String line;
