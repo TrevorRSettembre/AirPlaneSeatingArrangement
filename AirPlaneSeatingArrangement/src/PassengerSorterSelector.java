@@ -11,7 +11,7 @@ public class PassengerSorterSelector
     private PassengerSorter seatClass;
     private PassengerSorter luggage;
 
-    private String filePath;
+    private ArrayList<Passenger> passengerList;
     private boolean sortGender;
     private boolean sortSeatClass;
     private boolean sortAge;
@@ -19,6 +19,11 @@ public class PassengerSorterSelector
     private ArrayList<Passenger> origList;
 
     public PassengerSorterSelector (ArrayList<Passenger>passengerList)
+    {
+        this.passengerList = passengerList;
+    }
+
+    public void sortSelect()
     {
         origList = passengerList;
         sortAge = false;
@@ -31,8 +36,13 @@ public class PassengerSorterSelector
         int ageInput = Integer.parseInt(answers.get(0)[1]);
         int classInput = Integer.parseInt(answers.get(0)[2]);
         int luggageInput = Integer.parseInt(answers.get(0)[3]);
-        int passengerSorter = Integer.parseInt(answers.get(0)[4]);
+        //int passengerSorter = Integer.parseInt(answers.get(0)[4]);
         
+        //System.out.println(genderInput);
+        //System.out.println(ageInput);
+        //System.out.println(classInput);
+        //System.out.println(luggageInput);
+
         //Sorting by gender
         if (genderInput == 1) {
 
@@ -196,14 +206,13 @@ public class PassengerSorterSelector
         
     }
 
-
     public ArrayList<String[]> fileReader()
     {
         String fileName = "answerInfo.csv";
         String delimiter = ",";
 
         try {
-            File file = new File(filePath);
+            File file = new File(fileName);
             FileReader fileReader = new FileReader(file);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             String line;

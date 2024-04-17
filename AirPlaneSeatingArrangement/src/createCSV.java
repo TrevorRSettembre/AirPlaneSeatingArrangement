@@ -38,9 +38,8 @@ public class createCSV {
     {
         getInfo();
         writeLoadingTimeFake(fileName);
-        //estimated loading time
         writeAvgComfort(fileName);
-        //writePassengers(fileName, "Passenger Data");
+        writePassengers(fileName, "Passenger Data");
         for(int i = 0; i < 8; i++)
         {
             for(int j = 0; j < 2; j++)
@@ -48,13 +47,14 @@ public class createCSV {
                 Passenger p = planeSeatingChart[i][j];
                 String info = p.getSeat() + "," + p.getBourdingGroup() + "," + p.getFirstName() + "," + p.getLastName() + ","+ p.getGender() + ","+ p.getAge() + "," + p.getCarryonSize() + "," + p.getComfort() + "," + p.isFit();
                 writePassengers(fileName, info);
+                
             }
         }
         for(int i = 0; i < 18; i++)
         {
             for(int j = 0; j < 3; j++)
             {
-                Passenger p = planeSeatingChart[i][j];
+                Passenger p = planeSeatingChart[i + 8][j];
                 String info = p.getSeat() + "," + p.getBourdingGroup() + "," + p.getFirstName() + "," + p.getLastName() + ","+ p.getGender() + ","+ p.getAge() + "," + p.getCarryonSize() + "," + p.getComfort() + "," + p.isFit();
                 writePassengers(fileName, info);
             }
@@ -63,7 +63,7 @@ public class createCSV {
         {
             for(int j = 0; j < 3; j++)
             {
-                Passenger p = planeSeatingChart[i][j];
+                Passenger p = planeSeatingChart[i + 8 + 18][j];
                 String info = p.getSeat() + "," + p.getBourdingGroup() + "," + p.getFirstName() + "," + p.getLastName() + ","+ p.getGender() + ","+ p.getAge() + "," + p.getCarryonSize() + "," + p.getComfort() + "," + p.isFit();
                 writePassengers(fileName, info);
             }
@@ -76,7 +76,6 @@ public class createCSV {
     {
         getInfo();
         writeLoadingTime(fileName);
-        //estimated loading time
         writeAvgComfort(fileName);
         //writePassengers(fileName, "Passenger Data");
         for(int i = 0; i < 8; i++)
@@ -118,9 +117,11 @@ public class createCSV {
 	    	 	file.createNewFile();
 	    	}
             String inputData = "Estimated Unloading Time: " + unloadingTime;
-			FileWriter fw = new FileWriter(file);
+			FileWriter fw = new FileWriter(file, true);
 			BufferedWriter bw = new BufferedWriter(fw);
-				
+			if (file.length() > 0) {
+                bw.newLine();  // Add a new line if the file is not empty
+            }	
 				bw.write(inputData);
 			
 			
@@ -144,9 +145,11 @@ public class createCSV {
             RandomNumberGen numGen = new RandomNumberGen();
             int unloadingTime = numGen.RandomInt(30, 60);
             String inputData = "Estimated Unloading Time: " + unloadingTime;
-			FileWriter fw = new FileWriter(file);
+			FileWriter fw = new FileWriter(file, true);
 			BufferedWriter bw = new BufferedWriter(fw);
-				
+			if (file.length() > 0) {
+                bw.newLine();  // Add a new line if the file is not empty
+            }	
 				bw.write(inputData);
 			
 			
@@ -168,9 +171,11 @@ public class createCSV {
 	    	 	file.createNewFile();
 	    	}
             String inputData = "Average Plane Comfort: " + avgComfort;
-			FileWriter fw = new FileWriter(file);
+			FileWriter fw = new FileWriter(file, true);
 			BufferedWriter bw = new BufferedWriter(fw);
-				
+			if (file.length() > 0) {
+                bw.newLine();  // Add a new line if the file is not empty
+            }	
 				bw.write(inputData);
 			
 			
@@ -192,9 +197,11 @@ public class createCSV {
 	    	 	file.createNewFile();
 	    	}
 
-			FileWriter fw = new FileWriter(file);
+			FileWriter fw = new FileWriter(file, true);
 			BufferedWriter bw = new BufferedWriter(fw);
-				
+			if (file.length() > 0) {
+                bw.newLine();  // Add a new line if the file is not empty
+            }	
 				bw.write(inputData);
 			
 			
