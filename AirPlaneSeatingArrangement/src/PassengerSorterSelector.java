@@ -1,5 +1,7 @@
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class PassengerSorterSelector 
 {
@@ -8,6 +10,8 @@ public class PassengerSorterSelector
     private PassengerSorter age;
     private PassengerSorter seatClass;
     private PassengerSorter luggage;
+
+    private String filePath;
     private boolean sortGender;
     private boolean sortSeatClass;
     private boolean sortAge;
@@ -20,54 +24,46 @@ public class PassengerSorterSelector
         sortAge = false;
         sortBaggage = false;
         sortGender = false;
-        sortSeatClass = false;
-        Scanner in = new Scanner(System.in);
-        String genderInput = "", ageInput = "", classInput = "", luggageInput = "";
-        PassengerSorter passengerSorter = new PassengerSorter();
-        boolean valid = false;
-        //Asks about sorting by gender
-        while  (!valid) {
-            System.out.println("Would you like to sort by gender? (y/n)");
-            genderInput = in.nextLine().toLowerCase();
-			valid = checkAnswerInput(genderInput);
-        }
-        if (genderInput.equalsIgnoreCase("y")) {
+        sortSeatClass = false;  
+      
+        ArrayList<String[]> answers = fileReader();
+        int genderInput = Integer.parseInt(answers.get(0)[0]);
+        int ageInput = Integer.parseInt(answers.get(0)[1]);
+        int classInput = Integer.parseInt(answers.get(0)[2]);
+        int luggageInput = Integer.parseInt(answers.get(0)[3]);
+        int passengerSorter = Integer.parseInt(answers.get(0)[4]);
+        
+        //Sorting by gender
+        if (genderInput == 1) {
+
             female = new PassengerSorter();
             female.femaleSorter(passengerList);
             male = new PassengerSorter();
             male.maleSorter(passengerList);
             sortGender = true;
         }
-        //Asks about sorting by age
-        valid = false;
-        while  (!valid) {
-            System.out.println("Would you like to sort by age? (y/n)");
-            ageInput = in.nextLine().toLowerCase();
-			valid = checkAnswerInput(ageInput);
-        }
-        if (ageInput.equalsIgnoreCase("y")){
-            sortAge = true;
-            if (genderInput.equalsIgnoreCase("y")) {
-                passengerSorter.ageSorter(female.getGenderList());
-                passengerSorter.ageSorter(male.getGenderList());
+
+        //Sorting by age
+        if (ageInput == 1){
+          sortAge = true;
+            if (genderInput == 1) {
+                female.ageSorter(female.getGenderList());
+                male.ageSorter(male.getGenderList());
+
             }
             else {
                 age = new PassengerSorter();
                 age.ageSorter(passengerList);
             }
         }
-        //Asks about sorting by class
-        valid = false;
-        while  (!valid) {
-            System.out.println("Would you like to sort by class of seats? (y/n)");
-            classInput = in.nextLine().toLowerCase();
-			valid = checkAnswerInput(ageInput);
-        }
-        if (classInput.equalsIgnoreCase("y")) {
-            sortSeatClass = true;
-            if (genderInput.equalsIgnoreCase("y")) {
+
+        //Sorting by class
+        if (classInput == 1) {
+          sortSeatClass = true;
+            if (genderInput == 1) {
+
                 //If sorting by gender and class of seat
-                if (ageInput.equalsIgnoreCase("n")) {
+                if (ageInput == 0) {
                     female.firstClassSeatsSorter(female.getGenderList());
                     female.economySeatsSorter(female.getGenderList());
                     female.economyPlusSeatsSorter(female.getGenderList());
@@ -86,7 +82,7 @@ public class PassengerSorterSelector
                 }
             }
             //If sorting by age and class of seat
-            else if (genderInput.equalsIgnoreCase("n") && ageInput.equalsIgnoreCase("y")) {
+            else if (genderInput == 0 && ageInput == 1) {
                 age.firstClassSeatsSorter(age.getAgeList());
                 age.economySeatsSorter(age.getAgeList());
                 age.economyPlusSeatsSorter(age.getAgeList());
@@ -99,19 +95,15 @@ public class PassengerSorterSelector
                 seatClass.economyPlusSeatsSorter(passengerList);
             }
         } 
-        //Asks about sorting by luggage
-        valid = false;
-        while  (!valid) {
-            System.out.println("Would you like to sort luggage age? (y/n)");
-            luggageInput = in.nextLine().toLowerCase();
-			valid = checkAnswerInput(ageInput);
-        }
-        if (luggageInput.equalsIgnoreCase("y")) {
-            sortBaggage = true;
-            if (genderInput.equalsIgnoreCase("y")) {
+
+        //Sorting by luggage
+        if (luggageInput == 1) {
+          sortBaggage = true;
+            if (genderInput == 1) {
+
                 //If sorting by gender, age, class of seat, and luggage 
                 //or if sorting by gender, class of seat, and luggage
-                if (classInput.equalsIgnoreCase("y")) 
+                if (classInput == 1) 
                 {
                     female.smallCarryOnSorter(female.getFirstClassList());
                     female.smallCarryOnSorter(female.getEconomySeatsList());
@@ -152,9 +144,9 @@ public class PassengerSorterSelector
                     male.noCarryOnSorter(male.getAgeList());
                 }
             }
-            else if (ageInput.equalsIgnoreCase("y") && genderInput.equalsIgnoreCase("n")) {
+            else if (ageInput == 1 && genderInput == 0) {
                 //If sorting by age, class of seats, and luggage
-                if (classInput.equalsIgnoreCase("y")) {
+                if (classInput == 1) {
                     age.smallCarryOnSorter(age.getFirstClassList());
                     age.smallCarryOnSorter(age.getEconomySeatsList());
                     age.smallCarryOnSorter(age.getEconomyPlusSeatsList());
@@ -177,7 +169,7 @@ public class PassengerSorterSelector
                 }
             }
             //If sorting by class of seat and luggage 
-            else if (ageInput.equalsIgnoreCase("n") && genderInput.equalsIgnoreCase("n") && classInput.equalsIgnoreCase("y")) {
+            else if (ageInput == 0 && genderInput == 0 && classInput == 1) {
                 seatClass.smallCarryOnSorter(seatClass.getFirstClassList());
                 seatClass.smallCarryOnSorter(seatClass.getEconomySeatsList());
                 seatClass.smallCarryOnSorter(seatClass.getEconomyPlusSeatsList());
@@ -204,17 +196,26 @@ public class PassengerSorterSelector
         in.close();
     }
 
-    public boolean checkAnswerInput(String input)
-	{
-		if (input.equalsIgnoreCase("y"))
-			return true;
-		else if (input.equalsIgnoreCase("n"))
-			return true;
-		else {
-			System.out.println("INVALID INPUT. Try again. ");
-			return false;
-		}
-	}
+
+    public ArrayList<String[]> fileReader()
+    {
+        String fileName = "answerInfo.csv";
+        String delimiter = ",";
+
+        try {
+            File file = new File(filePath);
+            FileReader fileReader = new FileReader(file);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            String line;
+            ArrayList<String[]> sortingAnswerList = new ArrayList<String[]>();
+            while((line = bufferedReader.readLine()) != null){
+                sortingAnswerList.add(line.split(delimiter));
+            }
+            return sortingAnswerList;
+            
+        } catch (Exception e) {
+            return null;
+        }
 
     public PassengerSorter getFemale() {
         return female;
@@ -255,5 +256,7 @@ public class PassengerSorterSelector
     public ArrayList<Passenger> getOrigList()
     {
         return origList;
+
     }
+
 }

@@ -13,8 +13,7 @@ public class PassengerSorter
     private ArrayList<Passenger> largeCarryOns;
     private ArrayList<Passenger> noCarryOns;
 
-    
-    
+
 
     public void femaleSorter(ArrayList<Passenger>passengerList) 
     {

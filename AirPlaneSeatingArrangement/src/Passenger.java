@@ -9,11 +9,9 @@ public class Passenger {
     private double comfort;
     private String carryonSize;
     private int id;
+
     private int carryonSizeNum;
     private boolean fit;
-    
-
-    private int boardGroup;
 
 
     private String pickedSeat;//should be set to "NULL" if passenger did not choose a seat
@@ -21,6 +19,7 @@ public class Passenger {
     private ArrayList<Passenger> neighbors = new ArrayList<Passenger>();
     private String seat;
     private ArrayList<Passenger> group = new ArrayList<Passenger>();
+
     private String seatClass;// should be "F" for first, "E" for economy, and "P" for economy plus
     //Specific seat?
     //bought multiple seats?
@@ -82,6 +81,22 @@ public class Passenger {
     public String getGender(){
         return gender;
     }
+
+    public void setBoardingGroup(int num)
+    {
+        this.boardingGroup = num;
+    }
+
+    public int getBourdingGroup()
+    {
+        return boardingGroup;
+    }
+
+    public String getSeatClass()
+    {
+        return seatClass;
+    }
+
 
     public void setComfort(){
         if(pickedSeat != "NULL")
@@ -224,13 +239,6 @@ public class Passenger {
         this.carryonSizeNum = carryonSizeNum;
     }
 
-    public int getBoardGroup() {
-        return boardGroup;
-    }
-
-    public void setBoardGroup(int boardGroup) {
-        this.boardGroup = boardGroup;
-    }
 
     public boolean isFit() {
         return fit;
@@ -252,4 +260,5 @@ public class Passenger {
     }
 
     
+
 }
