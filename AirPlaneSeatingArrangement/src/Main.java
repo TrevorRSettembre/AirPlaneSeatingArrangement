@@ -25,14 +25,10 @@ public class Main {
      //System.out.println();
      //}
       
-     for (Passenger passenger : passengers) 
-     {
-        passenger.setPickedSeat(passenger.getSeat());
-        passenger.setSeat(null);
-     }
 
     
     PassengerSorterSelector pss = new PassengerSorterSelector(passengers);
+    pss.sortSelect();
     SeatingChart sc = new SeatingChart();
     sc.setSelected(pss);
     sc.setPassList();

@@ -22,7 +22,7 @@ public class CreatePassenegerList {
             passengers.get(i).setGender(stats.get(i)[3]);
             passengers.get(i).setAge(Integer.parseInt(stats.get(i)[4]));
             passengers.get(i).setCarryonSize(stats.get(i)[5]);
-            passengers.get(i).setSeat(stats.get(i)[6]);
+            passengers.get(i).setPickedSeat(stats.get(i)[6]);
             passengers.get(i).setSeatClass(stats.get(i)[7]);
             
         }
