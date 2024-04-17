@@ -25,5 +25,21 @@ public class Main {
     //     System.out.println();
     // }
        
+
+    
+    PassengerSorterSelector pss = new PassengerSorterSelector(passengers);
+    SeatingChart sc = new SeatingChart();
+    sc.setSelected(pss);
+    sc.setPassList();
+    sc.startSort();
+    createCSV cc = new createCSV(sc, "seatingChart.csv");
+    cc.csv();
+
+    SeatingChart rand = new SeatingChart();
+    rand.setSelected(pss);
+    rand.setPassList();;
+    rand.seatRandom();
+    createCSV randcsv = new createCSV(rand, "randSeatingChart.csv");
+    randcsv.randomCsv();
 }
 }

@@ -24,6 +24,10 @@ public class SeatingChart {
     private ArrayList<Passenger> passList;
     private double avgComfort;
 
+    public void setSelected(PassengerSorterSelector selected)
+    {
+        this.selected = selected;
+    }
 
     public double getAvgComfort() {
         return avgComfort;
@@ -43,9 +47,13 @@ public class SeatingChart {
         avgComfort = averageCom;
     }
 
-    public ArrayList<Passenger> getPassList()
+    public void setPassList()
     {
         passList = selected.getOrigList();
+    }
+
+    public ArrayList<Passenger> getPassList()
+    {
         return passList;
     }
 
@@ -514,6 +522,7 @@ public class SeatingChart {
                 }
             }
         }
+        fillSeatingChart();
     }
     //starts the sorting process, need to add baggage
     public void startSort() 
@@ -523,30 +532,36 @@ public class SeatingChart {
         {
             fillPickedSeats();
             seatGender();
+            //System.out.println("ok");
         }
         else if(selected.isSortAge())
         {
             fillPickedSeats();
             seatAge();
+            
         }
         else if(selected.isSortSeatClass())
         {
             fillPickedSeats();
             PassengerSorter currSort = selected.getSeatClass();
             seatClass(currSort);
+            
         }
         else if(selected.isSortBaggage())
         {
             seatForBaggage();
+            
         }
         else
         {
             fillPickedSeats();
             seatRandom();
+           
         }
 
         fillSeatingChart();
         addSeats();
+        findNeighbors();
         
 
     }
@@ -1438,7 +1453,10 @@ public class SeatingChart {
             for(int k = 0; k < 2; k++)
             {
                     planeSeatingChart[i][k] = firstClass[j][k];
-                    i++;
+                    if( k == 1)
+                    {
+                        i++;
+                    }
             }
         }
         for(int l = 0; l < 18; l++)
@@ -1446,7 +1464,10 @@ public class SeatingChart {
             for(int m = 0; m < 3; m++)
             {
                 planeSeatingChart[i][m] = econPlus[l][m];
-                i++;
+                if(m == 2)
+                {
+                    i++;
+                }
             }
         }
         for(int n = 0; n < 32; n++)
@@ -1454,15 +1475,18 @@ public class SeatingChart {
             for(int o = 0; o < 3; o++)
             {
                 planeSeatingChart[i][o] = econ[n][o];
-                i++;
+                if(o == 2)
+                {
+                    i++;
+                }
             }
         }
-        findNeighbors();
+
     }
     //will first fill all of the picked seats
     public void fillPickedSeats()
     {
-    
+       
        ArrayList<Passenger> pickedPass = getPickedPassengers();
        for(int i = 0; i < pickedPass.size(); i++)
        {
@@ -1473,6 +1497,7 @@ public class SeatingChart {
                     if(planeSeats[j][k].equals(pickedPass.get(i).getPickedSeat()))
                     {
                         firstClass[j][k] = pickedPass.get(i);
+                        
                     }
                 }
             }
@@ -1483,6 +1508,7 @@ public class SeatingChart {
                     if(planeSeats[j][k].equals(pickedPass.get(i).getPickedSeat()))
                     {
                         econPlus[j][k] = pickedPass.get(i);
+                        
                     }
                 }
             }
@@ -1504,7 +1530,7 @@ public class SeatingChart {
     public ArrayList<Passenger> getPickedPassengers()
     {
         ArrayList<Passenger> pickedPass = new ArrayList<Passenger>();
-        for(int i = 0; i<passList.size(); i++)
+        for(int i = 0; i < passList.size(); i++)
         {
             Passenger currPass = passList.get(i);
             if(!(currPass.getPickedSeat().equals("NULL")))

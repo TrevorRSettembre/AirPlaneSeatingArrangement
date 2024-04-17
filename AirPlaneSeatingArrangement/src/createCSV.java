@@ -38,7 +38,6 @@ public class createCSV {
     {
         getInfo();
         writeLoadingTimeFake(fileName);
-        //estimated loading time
         writeAvgComfort(fileName);
         //writePassengers(fileName, "Passenger Data");
         for(int i = 0; i < 8; i++)
@@ -76,7 +75,6 @@ public class createCSV {
     {
         getInfo();
         writeLoadingTime(fileName);
-        //estimated loading time
         writeAvgComfort(fileName);
         //writePassengers(fileName, "Passenger Data");
         for(int i = 0; i < 8; i++)
