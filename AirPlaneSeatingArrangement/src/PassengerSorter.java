@@ -1,3 +1,5 @@
+
+
 import java.util.ArrayList;
 public class PassengerSorter 
 {
@@ -9,8 +11,9 @@ public class PassengerSorter
     private ArrayList<Passenger> smallCarryOns;
     private ArrayList<Passenger> mediumCarryOns;
     private ArrayList<Passenger> largeCarryOns;
+    private ArrayList<Passenger> noCarryOns;
 
-    private double avgComfort;
+
 
     public void femaleSorter(ArrayList<Passenger>passengerList) 
     {
@@ -22,23 +25,6 @@ public class PassengerSorter
         }
     }
 
-    public double getAvgComfort() {
-        return avgComfort;
-    }
-
-    public void setAvgComfort(ArrayList<Passenger>passengerList) {
-        double averageCom = 0;
-        double comfortSum = 0;
-        for(int i = 0; i < passengerList.size(); i++)
-        {
-            Passenger currPassenger = passengerList.get(i);
-            comfortSum = comfortSum + currPassenger.getComfort();
-        }
-
-        averageCom = comfortSum/passengerList.size();
-
-        avgComfort = averageCom;
-    }
   
     public void maleSorter(ArrayList<Passenger>passengerList)
     {
@@ -62,6 +48,16 @@ public class PassengerSorter
                     age.set(j, temp);
                 }
             }
+        }
+    }
+
+    public void noCarryOnSorter(ArrayList<Passenger>passengerList)
+    {
+        noCarryOns = new ArrayList<Passenger>();
+        for (int i = 0; i < passengerList.size(); i++) {
+            Passenger currentPassenger = passengerList.get(i);
+            if (currentPassenger.getCarryonSize().equalsIgnoreCase("NULL"))
+                noCarryOns.add(currentPassenger);
         }
     }
 
@@ -164,74 +160,14 @@ public class PassengerSorter
     {
         return largeCarryOns;
     }
-}
 
-    public boolean checkLuggageFit(Passenger pOne, Passenger pTwo, Passenger pThree)
+    public ArrayList<Passenger> getNoCarryOnsList()
     {
-        int capacity = 10;
-        int large = 5;
-        int medium = 4;
-        int small = 2;
-
-        String pOneSize = pOne.getCarryonSize();
-        String pTwoSize = pOne.getCarryonSize();
-        String pThreeSize = pOne.getCarryonSize();
-
-        int oneSize = 0;
-        int twoSize = 0;
-        int threeSize = 0;
-
-        if(pOneSize.equalsIgnoreCase("small"))
-        {
-            oneSize = small;
-        }
-        else if(pOneSize.equalsIgnoreCase("medium"))
-        {
-            oneSize = medium;
-        }
-        else if(pOneSize.equalsIgnoreCase("large"))
-        {
-            oneSize = large;
-        }
-
-        if(pTwoSize.equalsIgnoreCase("small"))
-        {
-            twoSize = small;
-        }
-        else if(pTwoSize.equalsIgnoreCase("medium"))
-        {
-            twoSize = medium;
-        }
-        else if(pTwoSize.equalsIgnoreCase("large"))
-        {
-            twoSize = large;
-        }
-
-        if(pThreeSize.equalsIgnoreCase("small"))
-        {
-            threeSize = small;
-        }
-        else if(pThreeSize.equalsIgnoreCase("medium"))
-        {
-            threeSize = medium;
-        }
-        else if(pThreeSize.equalsIgnoreCase("large"))
-        {
-            threeSize = large;
-        }
-
-        int currentFill = oneSize + twoSize + threeSize;
-
-        if(currentFill <= capacity)
-        {
-            return true;
-        }
-        else {
-            return false;
-        }
-
-
+        return noCarryOns;
     }
 
-}
+    
 
+
+
+}

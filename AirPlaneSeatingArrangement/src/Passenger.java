@@ -9,7 +9,10 @@ public class Passenger {
     private double comfort;
     private String carryonSize;
     private int id;
-    private int boardingGroup;
+
+    private int carryonSizeNum;
+    private boolean fit;
+
 
     private String pickedSeat;//should be set to "NULL" if passenger did not choose a seat
     private String pickedClass;//should be either "F" for first class or "E" for economy "P" for economy plus
@@ -20,6 +23,16 @@ public class Passenger {
     private String seatClass;// should be "F" for first, "E" for economy, and "P" for economy plus
     //Specific seat?
     //bought multiple seats?
+
+    public String getSeatClass() {
+        return seatClass;
+    }
+
+    public void setSeatClass(String seatClass) {
+        this.seatClass = seatClass;
+    }
+
+
 
     public String getSeat() {
         return seat;
@@ -208,13 +221,44 @@ public class Passenger {
         this.pickedSeat = pickedSeat;
     }
 
-    public ArrayList getNeighbors() {
+    public ArrayList<Passenger> getNeighbors() {
         return neighbors;
     }
 
-    public void setNeighbors(ArrayList neighbors) {
+    public void setNeighbors(ArrayList<Passenger> neighbors) {
         this.neighbors = neighbors;
     }
 
+    public int getCarryOnSizeNum()
+    {
+        return carryonSizeNum;
+    }
+
+    public void setCarryOnSizeNum(int carryonSizeNum)
+    {
+        this.carryonSizeNum = carryonSizeNum;
+    }
+
+
+    public boolean isFit() {
+        return fit;
+    }
+
+    public void setFit(boolean fit) {
+        this.fit = fit;
+    }
+
+
+    public ArrayList<Passenger> getGroup() 
+    {
+        return group;
+    }
+
+    public void setGroup(ArrayList<Passenger> group)
+    {
+        this.group = group;
+    }
+
+    
 
 }
