@@ -193,7 +193,7 @@ public class PassengerSorterSelector
             }
 
         }
-        in.close();
+        
     }
 
 
@@ -216,7 +216,7 @@ public class PassengerSorterSelector
         } catch (Exception e) {
             return null;
         }
-
+    }
     public PassengerSorter getFemale() {
         return female;
     }

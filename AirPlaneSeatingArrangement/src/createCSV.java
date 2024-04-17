@@ -46,7 +46,7 @@ public class createCSV {
             for(int j = 0; j < 2; j++)
             {
                 Passenger p = planeSeatingChart[i][j];
-                String info = p.getSeat() + "," + p.getBoardGroup() + "," + p.getFirstName() + "," + p.getLastName() + ","+ p.getGender() + ","+ p.getAge() + "," + p.getCarryonSize() + "," + p.getComfort() + "," + p.isFit();
+                String info = p.getSeat() + "," + p.getBourdingGroup() + "," + p.getFirstName() + "," + p.getLastName() + ","+ p.getGender() + ","+ p.getAge() + "," + p.getCarryonSize() + "," + p.getComfort() + "," + p.isFit();
                 writePassengers(fileName, info);
             }
         }
@@ -55,7 +55,7 @@ public class createCSV {
             for(int j = 0; j < 3; j++)
             {
                 Passenger p = planeSeatingChart[i][j];
-                String info = p.getSeat() + "," + p.getBoardGroup() + "," + p.getFirstName() + "," + p.getLastName() + ","+ p.getGender() + ","+ p.getAge() + "," + p.getCarryonSize() + "," + p.getComfort() + "," + p.isFit();
+                String info = p.getSeat() + "," + p.getBourdingGroup() + "," + p.getFirstName() + "," + p.getLastName() + ","+ p.getGender() + ","+ p.getAge() + "," + p.getCarryonSize() + "," + p.getComfort() + "," + p.isFit();
                 writePassengers(fileName, info);
             }
         }
@@ -64,7 +64,7 @@ public class createCSV {
             for(int j = 0; j < 3; j++)
             {
                 Passenger p = planeSeatingChart[i][j];
-                String info = p.getSeat() + "," + p.getBoardGroup() + "," + p.getFirstName() + "," + p.getLastName() + ","+ p.getGender() + ","+ p.getAge() + "," + p.getCarryonSize() + "," + p.getComfort() + "," + p.isFit();
+                String info = p.getSeat() + "," + p.getBourdingGroup() + "," + p.getFirstName() + "," + p.getLastName() + ","+ p.getGender() + ","+ p.getAge() + "," + p.getCarryonSize() + "," + p.getComfort() + "," + p.isFit();
                 writePassengers(fileName, info);
             }
         }
@@ -84,7 +84,7 @@ public class createCSV {
             for(int j = 0; j < 2; j++)
             {
                 Passenger p = planeSeatingChart[i][j];
-                String info = p.getSeat() + "," + p.getBoardGroup() + "," + p.getFirstName() + "," + p.getLastName() + ","+ p.getGender() + ","+ p.getAge() + "," + p.getCarryonSize() + "," + p.getComfort() + "," + p.isFit();
+                String info = p.getSeat() + "," + p.getBourdingGroup() + "," + p.getFirstName() + "," + p.getLastName() + ","+ p.getGender() + ","+ p.getAge() + "," + p.getCarryonSize() + "," + p.getComfort() + "," + p.isFit();
                 writePassengers(fileName, info);
             }
         }
@@ -93,7 +93,7 @@ public class createCSV {
             for(int j = 0; j < 3; j++)
             {
                 Passenger p = planeSeatingChart[i][j];
-                String info = p.getSeat() + "," + p.getBoardGroup() + "," + p.getFirstName() + "," + p.getLastName() + ","+ p.getGender() + ","+ p.getAge() + "," + p.getCarryonSize() + "," + p.getComfort() + "," + p.isFit();
+                String info = p.getSeat() + "," + p.getBourdingGroup() + "," + p.getFirstName() + "," + p.getLastName() + ","+ p.getGender() + ","+ p.getAge() + "," + p.getCarryonSize() + "," + p.getComfort() + "," + p.isFit();
                 writePassengers(fileName, info);
             }
         }
@@ -102,7 +102,7 @@ public class createCSV {
             for(int j = 0; j < 3; j++)
             {
                 Passenger p = planeSeatingChart[i][j];
-                String info = p.getSeat() + "," + p.getBoardGroup() + "," + p.getFirstName() + "," + p.getLastName() + ","+ p.getGender() + ","+ p.getAge() + "," + p.getCarryonSize() + "," + p.getComfort() + "," + p.isFit();
+                String info = p.getSeat() + "," + p.getBourdingGroup() + "," + p.getFirstName() + "," + p.getLastName() + ","+ p.getGender() + ","+ p.getAge() + "," + p.getCarryonSize() + "," + p.getComfort() + "," + p.isFit();
                 writePassengers(fileName, info);
             }
         }

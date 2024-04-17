@@ -13,7 +13,7 @@ public class Passenger {
     private int carryonSizeNum;
     private boolean fit;
 
-
+    private int boardingGroup;
     private String pickedSeat;//should be set to "NULL" if passenger did not choose a seat
     private String pickedClass;//should be either "F" for first class or "E" for economy "P" for economy plus
     private ArrayList<Passenger> neighbors = new ArrayList<Passenger>();
@@ -24,9 +24,7 @@ public class Passenger {
     //Specific seat?
     //bought multiple seats?
 
-    public String getSeatClass() {
-        return seatClass;
-    }
+    
 
     public void setSeatClass(String seatClass) {
         this.seatClass = seatClass;
