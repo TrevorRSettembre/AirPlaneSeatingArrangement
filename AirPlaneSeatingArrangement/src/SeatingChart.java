@@ -58,6 +58,39 @@ public class SeatingChart {
         return passList;
     }
 
+
+    // public void test(ArrayList<Passenger> passList, String classStr){
+    //     int i = 0;
+    //     switch (classStr) {
+    //         case "econPlus":
+    //             for(int row = 0; row < econPlus.length;row++){
+    //                 for(int col = 0; col < econPlus[row].length;col++)
+    //                     if(econPlus[row][col] != null){
+    //                         if(!search(passList.get(i), econPlus)){
+    //                            if(col == 0 || col == 1){
+    //                                 econPlus[row][col] = passList.get(i);
+    //                            }else{
+    //                                 if(passList.get(i).getCarryOnSizeNum() == 0){
+    //                                     econPlus[row][col] = passList.get(i);
+    //                                 }else{
+    //                                     if((econPlus[row][0].getCarryOnSizeNum() + econPlus[row][1].getCarryOnSizeNum())<=(10 - passList.get(i).getCarryOnSizeNum())){
+    //                                         econPlus[row][col] = passList.get(i);
+    //                                     }
+    //                                 }
+    //                            }
+    //                         }
+    //                         i++;
+    //                     }else{
+    //                         //ignore
+    //                     }
+    //             }
+    //             break;
+        
+    //         default:
+    //             break;
+    //     }
+    // }
+
     public void seatBaggage(ArrayList<Passenger> passList, String classStr)
     {
         if(classStr.equals("econPlus"))
@@ -1672,14 +1705,14 @@ public class SeatingChart {
         boolean found = false;
         for (int i = 0; i < arr.length; i++) 
         {
-        for (int j = 0; j < arr[i].length; j++)
-            {
-                if (arr[i][j] == pass) 
+            for (int j = 0; j < arr[i].length; j++)
                 {
-                    found = true;
+                    if (arr[i][j] == pass) 
+                    {
+                        found = true;
+                    }
                 }
             }
-        }
         return found;
     }
 }

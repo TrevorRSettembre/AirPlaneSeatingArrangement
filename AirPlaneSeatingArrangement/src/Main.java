@@ -38,7 +38,7 @@ public class Main {
 
     SeatingChart rand = new SeatingChart();
     rand.setSelected(pss);
-    rand.setPassList();;
+    rand.setPassList();
     rand.seatRandom();
     LoadingGroups lgs = new LoadingGroups(passengers);
     createCSV randcsv = new createCSV(rand, "randSeatingChart.csv");
