@@ -24,7 +24,6 @@ public class Main {
         //System.out.println(passenger.getSeatClass());
      //System.out.println();
      //}
-      
 
     
     PassengerSorterSelector pss = new PassengerSorterSelector(passengers);
@@ -33,6 +32,7 @@ public class Main {
     sc.setSelected(pss);
     sc.setPassList();
     sc.startSort();
+    LoadingGroups lg = new LoadingGroups(passengers);
     createCSV cc = new createCSV(sc, "seatingChart.csv");
     cc.csv();
 
@@ -40,7 +40,9 @@ public class Main {
     rand.setSelected(pss);
     rand.setPassList();;
     rand.seatRandom();
+    LoadingGroups lgs = new LoadingGroups(passengers);
     createCSV randcsv = new createCSV(rand, "randSeatingChart.csv");
     randcsv.randomCsv();
+
 }
 }

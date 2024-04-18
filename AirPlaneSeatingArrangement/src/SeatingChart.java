@@ -11,8 +11,8 @@ public class SeatingChart {
     };
 
     private String planeSeats[][] = new String[][] {
-        {"A01", "B01"}, {"C01", "D01"}, {"A02","B02"}, {"C02","D02"}, {"A03","B03"}, {"C03","D03"}, {"A04","B04"}, {"C04","D04"},
-        {"A07","B07","C07"}, {"D07","E07","F07"},  {"A08","B08","C08"}, {"D08","E08","F08"},  {"A10","B10","C10"}, {"D10","E10","F10"},  {"A11","B11","C11"}, {"D11","E11","F11"}, {"A12","B12","C12"}, {"D12","E12","F12"},  {"A14","B14","C14"}, {"D14","E14","F14"},  {"A15","B15","C15"},  {"D15","E15","F15"}, {"A20","B20","C20"},  {"D20","E20","F20"}, {"A21","B21","C21"},  {"D21","E21","F21"}, 
+        {"A1", "B1"}, {"E1", "F1"}, {"A2","B2"}, {"E2","F2"}, {"A3","B3"}, {"E3","F3"}, {"A4","B4"}, {"E4","F4"},
+        {"A7","B7","C7"}, {"D7","E7","F7"},  {"A8","B8","C8"}, {"D8","E8","F8"},  {"A10","B10","C10"}, {"D10","E10","F10"},  {"A11","B11","C11"}, {"D11","E11","F11"}, {"A12","B12","C12"}, {"D12","E12","F12"},  {"A14","B14","C14"}, {"D14","E14","F14"},  {"A15","B15","C15"},  {"D15","E15","F15"}, {"A20","B20","C20"},  {"D20","E20","F20"}, {"A21","B21","C21"},  {"D21","E21","F21"}, 
         {"A22","B22","C22"}, {"D22","E22","F22"},  {"A23","B23","C23"}, {"D23","E23","F23"},  {"A24","B24","C24"}, {"D24","E24","F24"},  {"A25","B25","C25"}, {"D25","E25","F25"}, {"A26","B26","C26"}, {"D26","E26","F26"},  {"A27","B27","C27"}, {"D27","E27","F27",},  {"A28", "B28", "C28"},  {"D28","E28","F28"}, {"A29","B29","C29"}, {"D29","E29","F29"}, {"A30","B30","C30"}, {"D30","E30","F30"}, {"A31","B31","C31"}, {"D31","E31","F31"},  {"A32","B32","C32"}, {"D32","E32","F32"}, {"A34","B34","C34"}, {"D34","E34","F34"}, {"A35","B35","C35"}, {"D35","E35","F35"}, {"A36","B36","C36"},  {"D36","E36","F36"}, {"A37","B37","C37"},  {"D37","E37","F37"},  {"A38","B38","C38"}, {"D38","E38","F38"},
 
     };
@@ -39,6 +39,7 @@ public class SeatingChart {
         for(int i = 0; i < passengerList.size(); i++)
         {
             Passenger currPassenger = passengerList.get(i);
+            currPassenger.setComfort();
             comfortSum = comfortSum + currPassenger.getComfort();
         }
 
@@ -57,79 +58,109 @@ public class SeatingChart {
         return passList;
     }
 
-    public void seatBaggage(int row, String classStr, ArrayList<Passenger> passList)
+    public void seatBaggage(ArrayList<Passenger> passList, String classStr)
     {
         if(classStr.equals("econPlus"))
         {
-            int bigIndex = 0;
-            Passenger biggestBag = econPlus[row][0];
-            if(biggestBag.getCarryOnSizeNum() <= econPlus[row][1].getCarryOnSizeNum())
+            int i = 0;
+            int j = 0;
+            for(int k = 0; k < passList.size(); k ++)
             {
-                biggestBag = econPlus[row][1];
-                bigIndex = 1;
-            }
-            if(biggestBag.getCarryOnSizeNum() <= econPlus[row][2].getCarryOnSizeNum())
-            {
-                biggestBag = econPlus[row][2];
-                bigIndex = 2;
-            }
-            int index = passList.indexOf(biggestBag);
-            int nextPass = index + 1;
-            boolean fit = false;
-            while(nextPass < passList.size() && !fit)
-            {
-                boolean found = search(passList.get(nextPass), econPlus);
-                if(found)
+                Passenger pass = passList.get(k);
+                if(j == 3)
                 {
-                    nextPass++;
+                    j = 0;
+                    i++;
                 }
-                else
+                if(i < 18 && j < 3)
                 {
-                    econPlus[row][bigIndex] = passList.get(nextPass);
-                    fit = checkLuggageFit(econPlus[row][0], econPlus[row][1], econPlus[row][2]);
-                    if(!fit)
+                    if(econPlus[i][j] == null)
                     {
-                        nextPass++;
+                        if(j != 2)
+                        {
+                            econPlus[i][j] = pass;
+                        }
+                        else if(pass.getCarryOnSizeNum() == 0)
+                        {
+                            econPlus[i][j] = pass;
+                        }
+                        else if(pass.getCarryOnSizeNum() + econPlus[i][0].getCarryOnSizeNum()+ econPlus[i][1].getCarryOnSizeNum() < 11)
+                        {
+                            econPlus[i][j] = pass;
+                        }
+                        else if(i != 17)
+                        {
+                            if(econPlus[i+1][0] == null)
+                            {
+                                econPlus[i][j] = passList.get(k+1);
+                                econPlus[i+1][0] = pass;
+                            }
+                            else{
+                                econPlus[i][j] = pass;
+                            }
+                        }
+                        else 
+                        {
+                            econPlus[i][j] = pass;
+                        }
+                        
                     }
+                    j++;
                     
                 }
-                
+
             }
         }
         else if(classStr.equals("econ"))
         {
-            int bigIndex = 0;
-            Passenger biggestBag = econ[row][0];
-            if(biggestBag.getCarryOnSizeNum() <= econ[row][1].getCarryOnSizeNum())
+            int i = 0;
+            int j = 0;
+            for(int k = 0; k < passList.size(); k ++)
             {
-                biggestBag = econ[row][1];
-            }
-            if(biggestBag.getCarryOnSizeNum() <= econ[row][2].getCarryOnSizeNum())
-            {
-                biggestBag = econ[row][2];
-            }
-            int index = passList.indexOf(biggestBag);
-            int nextPass = index + 1;
-            boolean fit = false;
-            while(nextPass < passList.size() && !fit)
-            {
-                boolean found = search(passList.get(nextPass), econ);
-                if(found)
+                Passenger pass = passList.get(k);
+                if(j == econ[i].length)
                 {
-                    nextPass++;
+                    j = 0;
+                    i++;
                 }
-                else
+                if(i < econ.length && j < econ[i].length)
                 {
-                    econ[row][bigIndex] = passList.get(nextPass);
-                    fit = checkLuggageFit(econ[row][0], econ[row][1], econ[row][2]);
-                    if(!fit)
+                    if(econ[i][j] == null)
                     {
-                        nextPass++;
+                        if(j != 2)
+                        {
+                            econPlus[i][j] = pass;
+                        }
+                        else if(pass.getCarryOnSizeNum() == 0)
+                        {
+                            econ[i][j] = pass;
+                        }
+                        else if(pass.getCarryOnSizeNum() + econ[i][0].getCarryOnSizeNum()+ econ[i][1].getCarryOnSizeNum() < 11)
+                        {
+                            econ[i][j] = pass;
+                        }
+                        else if(i != 31)
+                        {
+                            if(econPlus[i+1][0] == null)
+                            {
+                                econPlus[i][j] = passList.get(k+1);
+                                econPlus[i+1][0] = pass;
+                            }
+                            else{
+                                econPlus[i][j] = pass;
+                            }
+                        }
+                        else 
+                        {
+                            econ[i][j] = pass;
+                        }
+                        
                     }
-                    
+                    j++;
                 }
-                
-            }
+
+
+            }   
         }
     }
     //this method checks to see if the luggage fits
@@ -189,10 +220,6 @@ public class SeatingChart {
             threeSize = large;
         }
 
-        pOne.setCarryOnSizeNum(oneSize);
-        pTwo.setCarryOnSizeNum(twoSize);
-        pThree.setCarryOnSizeNum(threeSize);
-
         int currentFill = oneSize + twoSize + threeSize;
 
         if(currentFill <= capacity)
@@ -209,98 +236,131 @@ public class SeatingChart {
     public void seatClass(PassengerSorter currSort)
     {
         int i = 0;
-        
+        int j = 0;
+        int k = 0;
         ArrayList<Passenger> currList = currSort.getFirstClassList();
-        System.out.println(currList.get(i).getAge());
+        //System.out.println(currList.size());
         while(i < currList.size())
         {   
-            if(!search(currList.get(i), firstClass))
-            {
-                
-                for(int j = 0; j < 8; j++)
+            boolean go = true;
+            if(!(search(currList.get(i), firstClass)))
+            {        
+                while(go)
                 {
-                    for(int k = 0; k < 2; k++)
+                    
+                    if(firstClass[j][k] == null)
                     {
-                        if(firstClass[j][k] == null)
-                        {
-                            firstClass[j][k] = currList.get(i);
-                            i++;
+                        firstClass[j][k] = currList.get(i);
+                        i++;
+                        go = false;
+                    }
+                    if(k == 0)
+                    {
+                        k++;
+                    }
+                    else if(k == 1)
+                    {
+                        k = 0;
+                        j++;
+                    }
+                    else if (j == 7 && k == 1)
+                    {
+                        go = false;
+                    }
                             
-                        }
-                    }
+
                 }
+                    
+                
             }
             else
             {
                 i++;
             }
         }
+        if(selected.isSortBaggage())
+        {
+            currList = currSort.getEconomyPlusSeatsList();
+            seatBaggage(currList, "econPlus");  
+        }
+        else {
         int l = 0;
+        int m = 0;
+        int n = 0;
         currList = currSort.getEconomyPlusSeatsList();
-        while(l < currList.size())
+        while(l < currList.size() && m < 18 && n < 3)
         {
-            if(!search(currList.get(i), econPlus))
+            boolean go = true;
+            if(!search(currList.get(l), econPlus))
             {
-                for(int m = 0; m < 18; m++)
+                while(go)
                 {
-                    for(int n = 0; n < 3; n++)
+                    if(econPlus[m][n] == null)
                     {
-                        if(econPlus[m][n] == null)
-                        {
-                            econPlus[m][n] = currList.get(l);
-                            l++;
-                            if(n == 2)
-                            {
-                                if(selected.isSortBaggage())
-                                {
-                                    if (!checkLuggageFit(econPlus[m][0], econPlus[m][1], econPlus[m][2])) 
-                                    {
-                                        seatBaggage(m, "econPlus", currList);
-                                    }
-                                }
-                            }
-                        }
+                        econPlus[m][n] = currList.get(l);
+                        l++;
+                        go = false;
                     }
-                }
+                    if(n == 0 || n == 1)
+                    {
+                        n++;
+                    }
+                    else if(n == 2)
+                    {
+                        n = 0;
+                        m++;
+                    }
             }
-            else
+            
+        }
+        else
             {
-                i++;
+                l++;
             }
         }
+    }
+    if(selected.isSortBaggage())
+        {
+            currList = currSort.getEconomyPlusSeatsList();
+            seatBaggage(currList, "econPlus");  
+        }
+        else {
         int o = 0;
+        int p = 0;
+        int q = 0;
         currList = currSort.getEconomySeatsList();
-        while(l < currList.size())
+        System.out.println(currList.size());
+        while(o < currList.size())
         {
-            if(!search(currList.get(i), econ))
+            boolean go = true;
+            if(!search(currList.get(o), econ))
             {
-                for(int p = 0; p < 18; p++)
+                while(go)
                 {
-                    for(int q = 0; q < 3; q++)
+                    if(econ[p][q] == null)
                     {
-                        if(econ[p][q] == null)
-                        {
-                            econ[p][q] = currList.get(o);
-                            o++;
-                            if(q == 2)
-                            {
-                                if(selected.isSortBaggage())
-                                {
-                                    if (!checkLuggageFit(econ[p][0], econ[p][1], econ[p][2])) 
-                                    {
-                                        seatBaggage(p, "econ", currList);
-                                    }
-                                }
-                            }
-                        }
+                        econ[p][q] = currList.get(o);
+                        o++;
+                        go = false;
                     }
-                }
+                    if(q == 0 || q == 1)
+                    {
+                        q++;
+                    }
+                    else if(q == 2)
+                    {
+                        q = 0;
+                        p++;
+                    }
             }
-            else
+            
+        }
+        else
             {
-                i++;
+                o++;
             }
         }
+    }
     }
     //need to add baggage to this
     public void seatAge()
@@ -335,16 +395,6 @@ public class SeatingChart {
                         {
                             econPlus[m][n] = currList.get(i);
                             i++;
-                            if(n == 2)
-                            {
-                                if(selected.isSortBaggage())
-                                {
-                                    if (!checkLuggageFit(econPlus[m][0], econPlus[m][1], econPlus[m][2])) 
-                                    {
-                                        seatBaggage(m, "econPlus", currList);
-                                    }
-                                }
-                            }
                         }
                         }
                     }
@@ -356,16 +406,6 @@ public class SeatingChart {
                         {
                             econ[p][q] = currList.get(i);
                             i++;
-                            if(q == 2)
-                            {
-                                if(selected.isSortBaggage())
-                                {
-                                    if (!checkLuggageFit(econ[p][0], econ[p][1], econ[p][2])) 
-                                    {
-                                        seatBaggage(p, "econ", currList);
-                                    }
-                                }
-                            }
                         }
                         }
                     }
@@ -408,16 +448,6 @@ public class SeatingChart {
                             {
                                 econPlus[m][n] = currList.get(i);
                                 i++;
-                                if(n == 2)
-                                {
-                                    if(selected.isSortBaggage())
-                                    {
-                                        if (!checkLuggageFit(econPlus[m][0], econPlus[m][1], econPlus[m][2])) 
-                                        {
-                                            seatBaggage(m, "econPlus", currList);
-                                        }
-                                    }
-                                }
                             }
                         }
                     }
@@ -429,17 +459,6 @@ public class SeatingChart {
                         {
                             econ[p][q] = currList.get(i);
                             i++;
-                            if(q == 2)
-                            {
-                                if(selected.isSortBaggage())
-                                {
-                                    if (!checkLuggageFit(econ[p][0], econ[p][1], econ[p][2])) 
-                                    {
-                                        seatBaggage(p, "econ", currList);
-                                    }
-                                }
-                            }
-                        }
                         }
                     }
                 }
@@ -485,12 +504,13 @@ public class SeatingChart {
 
             }
     }
+}
     //creates a random seating chart
     public void seatRandom()
     {
         int i = 0;
         ArrayList<Passenger> passengers = selected.getOrigList();
-        System.out.println(passengers.size());
+        //System.out.println(passengers.size());
         while(i < passengers.size())
         {
             for(int j = 0; j < 8; j++)
@@ -500,6 +520,7 @@ public class SeatingChart {
                     if(firstClass[j][k] == null)
                     {
                         firstClass[j][k] = passengers.get(i);
+                        passengers.get(i).setActualClass("F");
                         i++;
                     }
                 }
@@ -511,6 +532,7 @@ public class SeatingChart {
                     if(econPlus[l][m] == null)
                     {
                         econPlus[l][m] = passengers.get(i);
+                        passengers.get(i).setActualClass("P");
                         i++;
                     }
                     
@@ -523,6 +545,7 @@ public class SeatingChart {
                     if(econ[n][o] == null)
                     {
                         econ[n][o] = passengers.get(i);
+                        passengers.get(i).setActualClass("E");
                          i++;
                     }
                     
@@ -531,6 +554,7 @@ public class SeatingChart {
         }
         fillSeatingChart();
         addSeats();
+        findNeighbors();
     }
     //starts the sorting process, need to add baggage
     public void startSort() 
@@ -571,8 +595,60 @@ public class SeatingChart {
         fillSeatingChart();
         addSeats();
         findNeighbors();
+        doFit();
+        
         
 
+    }
+
+    public void doFit()
+    {
+        for(int i = 0; i < 8; i++)
+        {
+            for(int j = 0; j < 2; j++)
+            {
+                Passenger currpass = planeSeatingChart[i][j];
+                
+                currpass.setFit(true);
+                
+            }
+        }
+        for(int i = 8; i < 18 + 8; i++)
+        {
+            for(int j = 0; j < 3; j++)
+            {
+                Passenger currpass = planeSeatingChart[i][j];
+                ArrayList<Passenger> n = currpass.getNeighbors();
+                boolean check = checkLuggageFit(n.get(0), n.get(1), n.get(2));
+                currpass.setFit(check);
+                
+            }
+        }
+
+        for(int i = 8 + 18; i < 8 + 18 + 32; i++)
+        {
+            for(int j = 0; j < 3; j++)
+            {
+                Passenger currpass = planeSeatingChart[i][j];
+                ArrayList<Passenger> n = currpass.getNeighbors();
+                int amount = 0;
+                int currLug = 0;
+                for(int k = 0; k < n.size(); k++)
+                {
+                    currLug = n.get(k).getCarryOnSizeNum();
+                    amount = amount + currLug;
+                }
+
+                if(amount > 10)
+                {
+                    currpass.setFit(false);
+                }
+                else{
+                    currpass.setFit(true);
+                }
+                
+            }
+        }
     }
 
     public void findGroups()
@@ -1394,9 +1470,10 @@ public class SeatingChart {
                 int w = 0;
                 while(w < neigborhood.size())
                 {
-                    neigborhood.get(w).setGroup(neigborhood);
+                    neigborhood.get(w).setNeighbors(neigborhood);
                     w++;
                 }
+                
             }
         }
         for(int i = 0; i < 18; i++)
@@ -1412,7 +1489,7 @@ public class SeatingChart {
                        {
                         go = false;
                        }
-                       else if(j == 0)
+                       else if(j == 0 || j == 1)
                        {
                         j++;
                        }
@@ -1420,9 +1497,10 @@ public class SeatingChart {
                 int w = 0;
                 while(w < neigborhood.size())
                 {
-                    neigborhood.get(w).setGroup(neigborhood);
+                    neigborhood.get(w).setNeighbors(neigborhood);
                     w++;
                 }
+                
             }
         }
         for(int i = 0; i < 32; i++)
@@ -1438,7 +1516,7 @@ public class SeatingChart {
                        {
                         go = false;
                        }
-                       else if(j == 0)
+                       else if(j == 0 || j == 1)
                        {
                         j++;
                        }
@@ -1446,7 +1524,7 @@ public class SeatingChart {
                 int w = 0;
                 while(w < neigborhood.size())
                 {
-                    neigborhood.get(w).setGroup(neigborhood);
+                    neigborhood.get(w).setNeighbors(neigborhood);
                     w++;
                 }
             }
@@ -1456,13 +1534,14 @@ public class SeatingChart {
     //takes the arrays for the seat classes and put them into the main seating chart array
     public void fillSeatingChart()
     {
-        System.out.println("ok");
+        
         int i = 0;
         for(int j = 0; j < 8; j++)
         {
             for(int k = 0; k < 2; k++)
             {
                     planeSeatingChart[i][k] = firstClass[j][k];
+                    firstClass[j][k].setActualClass("F");
                     if( k == 1)
                     {
                         i++;
@@ -1474,6 +1553,8 @@ public class SeatingChart {
             for(int m = 0; m < 3; m++)
             {
                 planeSeatingChart[i][m] = econPlus[l][m];
+                System.out.println(l + " " + m);
+                econPlus[l][m].setActualClass("P");
                 if(m == 2)
                 {
                     i++;
@@ -1485,6 +1566,7 @@ public class SeatingChart {
             for(int o = 0; o < 3; o++)
             {
                 planeSeatingChart[i][o] = econ[n][o];
+                econ[n][o].setActualClass("E");
                 if(o == 2)
                 {
                     i++;
@@ -1562,7 +1644,7 @@ public class SeatingChart {
                 
             }
         }
-        for(int i = 8;i < 26; i++)
+        for(int i = 8; i < 26; i++)
         {
             for(int j = 0; j < 3; j++)
             {
