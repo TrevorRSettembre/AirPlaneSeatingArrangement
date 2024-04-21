@@ -87,7 +87,7 @@ public class createCSV {
                 writePassengers(fileName, info);
             }
         }
-        for(int i = 0; i < 18; i++)
+        for(int i = 8; i < 18 + 8; i++)
         {
             for(int j = 0; j < 3; j++)
             {
@@ -96,7 +96,7 @@ public class createCSV {
                 writePassengers(fileName, info);
             }
         }
-        for(int i = 0; i < 32; i++)
+        for(int i = 18 + 8; i < 32 +8 + 18; i++)
         {
             for(int j = 0; j < 3; j++)
             {
