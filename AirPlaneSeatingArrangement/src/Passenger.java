@@ -15,7 +15,7 @@ public class Passenger {
 
     private int boardingGroup;
     private String pickedSeat;//should be set to "NULL" if passenger did not choose a seat
-    private String pickedClass;//should be either "F" for first class or "E" for economy "P" for economy plus
+    private String actualClass;//should be either "F" for first class or "E" for economy "P" for economy plus
     private ArrayList<Passenger> neighbors = new ArrayList<Passenger>();
     private String seat;
     private ArrayList<Passenger> group = new ArrayList<Passenger>();
@@ -24,7 +24,15 @@ public class Passenger {
     //Specific seat?
     //bought multiple seats?
 
-    
+    public void setActualClass(String actualClass)
+    {
+        this.actualClass = actualClass;
+    }
+
+    public String getActualClass()
+    {
+        return actualClass;
+    }
 
     public void setSeatClass(String seatClass) {
         this.seatClass = seatClass;
@@ -108,19 +116,19 @@ public class Passenger {
                 comfort = comfort - (Math.random() * (101 - 0) + 0);
             }
        }
-       if((seatClass.equals("F")&& !(pickedClass.equals("F"))))
+       if((actualClass.equals("F")&& !(seatClass.equals("F"))))
        {
             comfort = comfort + (Math.random() * (151 - 0) + 0);
        }
-       else if(!(seatClass.equals("F")) && pickedClass.equals("F"))
+       else if(!(actualClass.equals("F")) && seatClass.equals("F"))
        {
             comfort = comfort - (Math.random() * (201 - 0) + 0);
        }
-       else if(seatClass.equals("P") && !(pickedClass.equals("P")))
+       else if(actualClass.equals("P") && !(seatClass.equals("P")))
        {
             comfort = comfort + (Math.random() * (101 - 0) + 0);
        }
-       else if (seatClass.equals("E") && pickedClass.equals("P"))
+       else if (actualClass.equals("E") && seatClass.equals("P"))
        {
             comfort = comfort - (Math.random() * (151 - 0) + 0);
        }
@@ -147,41 +155,41 @@ public class Passenger {
                     {
                         comfort = comfort - (Math.random() * (51 -0) + 0);
                     }
-                    else if(age - currPassenger.getAge() == 5 || age - currPassenger.getAge() == -5)
+                    else if(age - currPassenger.getAge() < 6 ||  currPassenger.getAge() - age < 5)
+                    {
+                        comfort = comfort + (Math.random() * (31 - 0) + 0);
+                    }
+                    else if(age - currPassenger.getAge() < 11 || currPassenger.getAge() - age < 11)
+                    {
+                        comfort = comfort + (Math.random() * (26 - 0) + 0);
+                    }
+                    else if(age - currPassenger.getAge() < 16 || currPassenger.getAge() - age < 16)
                     {
                         comfort = comfort + (Math.random() * (21 - 0) + 0);
                     }
-                    else if(age - currPassenger.getAge() == 10 || age - currPassenger.getAge() == -10)
+                    else if(age - currPassenger.getAge() < 21 || currPassenger.getAge() - age < 21)
                     {
                         comfort = comfort + (Math.random() * (16 - 0) + 0);
                     }
-                    else if(age - currPassenger.getAge() == 15 || age - currPassenger.getAge() == -15)
-                    {
-                        comfort = comfort + (Math.random() * (11 - 0) + 0);
-                    }
-                    else if(age - currPassenger.getAge() == 20 || age - currPassenger.getAge() == -20)
-                    {
-                        comfort = comfort + (Math.random() * (6 - 0) + 0);
-                    }
-                    else if(age - currPassenger.getAge() == 30 || age - currPassenger.getAge() == -30)
+                    else if(age - currPassenger.getAge() <31 || currPassenger.getAge() - age < 31)
                     {
                         comfort = comfort - (Math.random() * (6 - 0) + 0);
                     }
-                    else if(age - currPassenger.getAge() == 35 || age - currPassenger.getAge() == -35)
+                    else if(age - currPassenger.getAge() < 36 || currPassenger.getAge() - age < 36)
                     {
                         comfort = comfort - (Math.random() * (11 - 0) + 0);
                     }
-                    else if(age - currPassenger.getAge() == 40 || age - currPassenger.getAge() == -40)
+                    else if(age - currPassenger.getAge() < 41 || currPassenger.getAge() - age < 41)
                     {
                         comfort = comfort - (Math.random() * (16 - 0) + 0);
                     }
-                    else if(age - currPassenger.getAge() == 45 || age - currPassenger.getAge() == -45)
+                    else if(age - currPassenger.getAge() > 45 || currPassenger.getAge() - age > -45)
                     {
                         comfort = comfort - (Math.random() * (21 - 0) + 0);
                     }
                     if(gender.equals(currPassenger.getGender()))
                     {
-                        comfort = comfort + (Math.random() * (21 - 0) + 0);
+                        comfort = comfort + (Math.random() * (31 - 0) + 0);
                     }
                 }
             }
@@ -229,21 +237,45 @@ public class Passenger {
 
     public int getCarryOnSizeNum()
     {
+        if(carryonSize.equalsIgnoreCase("small"))
+        {
+            carryonSizeNum = 2;
+        }
+        else if(carryonSize.equalsIgnoreCase("medium"))
+        {
+            carryonSizeNum = 4;
+        }
+        else if(carryonSize.equalsIgnoreCase("large"))
+        {
+            carryonSizeNum = 5;
+        }
         return carryonSizeNum;
     }
 
-    public void setCarryOnSizeNum(int carryonSizeNum)
+    public void setCarryOnSizeNum()
     {
-        this.carryonSizeNum = carryonSizeNum;
+        if(carryonSize.equalsIgnoreCase("small"))
+        {
+            carryonSizeNum = 2;
+        }
+        else if(carryonSize.equalsIgnoreCase("medium"))
+        {
+            carryonSizeNum = 4;
+        }
+        else if(carryonSize.equalsIgnoreCase("large"))
+        {
+            carryonSizeNum = 5;
+        }
     }
 
 
     public boolean isFit() {
+
         return fit;
     }
 
     public void setFit(boolean fit) {
-        this.fit = fit;
+       this.fit = fit;
     }
 
 

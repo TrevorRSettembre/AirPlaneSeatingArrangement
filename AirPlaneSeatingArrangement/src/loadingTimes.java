@@ -45,7 +45,8 @@ public class loadingTimes {
             {
                 estUnloadingTime += 30;
             }
-        }  
+        }
+        estUnloadingTime = estUnloadingTime/60;  
     }
 
 }

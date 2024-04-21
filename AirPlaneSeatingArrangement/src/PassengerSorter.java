@@ -20,8 +20,9 @@ public class PassengerSorter
         gender = new ArrayList<Passenger>();
         for (int i = 0; i < passengerList.size(); i++) {
             Passenger currentPassenger = passengerList.get(i);
-            if (currentPassenger.getGender().toLowerCase().equals("f"))
+            if (currentPassenger.getGender().toLowerCase().equals("f")) {
                 gender.add(currentPassenger);
+            }
         }
     }
 
