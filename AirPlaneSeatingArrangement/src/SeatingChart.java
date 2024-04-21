@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class SeatingChart {
     
@@ -311,12 +312,8 @@ public class SeatingChart {
                 i++;
             }
         }
-        if(selected.isSortBaggage())
-        {
-            currList = currSort.getEconomyPlusSeatsList();
-            seatBaggage(currList, "econPlus");  
-        }
-        else {
+        
+        
         int l = 0;
         int m = 0;
         int n = 0;
@@ -351,13 +348,8 @@ public class SeatingChart {
                 l++;
             }
         }
-    }
-    if(selected.isSortBaggage())
-        {
-            currList = currSort.getEconomyPlusSeatsList();
-            seatBaggage(currList, "econPlus");  
-        }
-        else {
+    
+   
         int o = 0;
         int p = 0;
         int q = 0;
@@ -394,7 +386,7 @@ public class SeatingChart {
             }
         }
     }
-    }
+
     //need to add baggage to this
     public void seatAge()
     {
@@ -543,6 +535,7 @@ public class SeatingChart {
     {
         int i = 0;
         ArrayList<Passenger> passengers = selected.getOrigList();
+        Collections.shuffle(passengers);
         //System.out.println(passengers.size());
         while(i < passengers.size())
         {
