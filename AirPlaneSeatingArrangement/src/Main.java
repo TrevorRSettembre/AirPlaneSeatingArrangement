@@ -43,6 +43,6 @@ public class Main {
     LoadingGroups lgs = new LoadingGroups(passengers);
     createCSV randcsv = new createCSV(rand, "randSeatingChart.csv");
     randcsv.randomCsv();
-
+    System.out.println("Seating Charts Created");
 }
 }

@@ -269,6 +269,7 @@ public class SeatingChart {
 
     public void seatClass(PassengerSorter currSort)
     {
+        System.out.println("Seating for Class");
         int i = 0;
         int j = 0;
         int k = 0;
@@ -390,6 +391,7 @@ public class SeatingChart {
     //need to add baggage to this
     public void seatAge()
     {
+        System.out.println("Seating for Age");
         PassengerSorter currSort = selected.getAge();
         if(selected.isSortSeatClass())
         {
@@ -440,6 +442,11 @@ public class SeatingChart {
     //need to add baggage
     public void seatGender()
     {
+            System.out.println("Seating for Gender");
+            if(selected.isSortAge())
+            {
+                System.out.println("Seating for Age");
+            }
             PassengerSorter currSort1 = selected.getFemale();
             PassengerSorter currSort2 = selected.getMale();
             if(selected.isSortSeatClass())
@@ -533,6 +540,7 @@ public class SeatingChart {
     //creates a random seating chart
     public void seatRandom()
     {
+        System.out.println("Seating Random");
         int i = 0;
         ArrayList<Passenger> passengers = selected.getOrigList();
         Collections.shuffle(passengers);
