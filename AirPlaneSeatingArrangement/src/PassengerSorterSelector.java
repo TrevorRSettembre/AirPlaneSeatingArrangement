@@ -223,6 +223,7 @@ public class PassengerSorterSelector
             return sortingAnswerList;
             
         } catch (Exception e) {
+            System.out.println("There is an error with answerInfo.csv");
             return null;
         }
     }

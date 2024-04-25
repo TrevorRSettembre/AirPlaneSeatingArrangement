@@ -12,7 +12,7 @@ public class Main {
     CreatePassenegerList createPassenegerList = new CreatePassenegerList();
     ArrayList<Passenger> passengers = new ArrayList<Passenger>();
     passengers = createPassenegerList.fillInStats();
-    
+
      //for (Passenger passenger : passengers) {
        //  System.out.print(passenger.getId());
          //System.out.print(passenger.getFirstName());

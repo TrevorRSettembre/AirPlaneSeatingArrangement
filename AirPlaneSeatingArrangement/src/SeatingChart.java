@@ -354,7 +354,7 @@ public class SeatingChart {
         int p = 0;
         int q = 0;
         currList = currSort.getEconomySeatsList();
-        System.out.println(currList.size());
+        //System.out.println(currList.size());
         while(o < currList.size())
         {
             boolean go = true;
@@ -1579,7 +1579,7 @@ public class SeatingChart {
             for(int m = 0; m < 3; m++)
             {
                 planeSeatingChart[i][m] = econPlus[l][m];
-                System.out.println(l + " " + m);
+                //System.out.println(l + " " + m);
                 econPlus[l][m].setActualClass("P");
                 if(m == 2)
                 {
